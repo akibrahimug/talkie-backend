@@ -16,6 +16,10 @@ import HTTP_STATUS from "http-status-codes";
 import "express-async-errors";
 // compression library helps compress the data from the server (response)
 import compression from "compression";
+import { config } from "./config";
+import { Server } from "socket.io";
+import { createClient } from "redis";
+import { createAdapter } from "@socket.io/redis-adapter";
 
 // use this port number for development
 //and we will use it in AWS for load balancing and security groups
@@ -41,17 +45,17 @@ export class TalkieServer {
       cookieSession({
         // to use in AWS for load balancing
         name: "session",
-        keys: ["key1", "key2"],
+        keys: [config.SECRET_KEY_ONE!, config.SECRET_KEY_TWO!],
         maxAge: 24 * 60 * 60 * 1000, // 24 hours
         // we change secure only for development
-        secure: false,
+        secure: config.NODE_ENV !== "development",
       })
     );
     app.use(helmet());
     app.use(hpp());
     app.use(
       cors({
-        origin: "*",
+        origin: config.CLIENT_URL,
         // we set to true for cookies to work
         credentials: true,
         // For older browsers but just to be safe
@@ -67,7 +71,9 @@ export class TalkieServer {
   private async startServer(app: Application): Promise<void> {
     try {
       const httpServer: http.Server = new http.Server(app);
+      const socketIO: Server = await this.createSocketIO(httpServer);
       this.startHttpServer(httpServer);
+      this.socketIOCOnnections(socketIO);
     } catch (e) {
       console.log(e);
     }
@@ -87,7 +93,20 @@ export class TalkieServer {
       })
     );
   }
-  private createSocketIO(httpServer: http.Server): void {}
+  private async createSocketIO(httpServer: http.Server): Promise<Server> {
+    const io: Server = new Server(httpServer, {
+      cors: {
+        origin: config.CLIENT_URL,
+        methods: ["GET,HEAD,PUT,PATCH,POST,DELETE"],
+      },
+    });
+    const pubClient = createClient({ url: config.REDIS_HOST });
+    const subClient = pubClient.duplicate();
+    await Promise.all([pubClient.connect(), subClient.connect()]);
+    //  use redis adapter
+    io.adapter(createAdapter(pubClient, subClient));
+    return io;
+  }
 
   private startHttpServer(httpServer: http.Server): void {
     httpServer.listen(SERVER_PORT, () => {
@@ -96,4 +115,6 @@ export class TalkieServer {
       console.log(`Server started on port ${SERVER_PORT}`);
     });
   }
+
+  private socketIOCOnnections(io: Server): void {}
 }
