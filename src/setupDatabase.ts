@@ -1,16 +1,18 @@
 import mongoose from "mongoose";
 import { config } from "./config";
+import Logger from "bunyan";
 
+const log: Logger = config.createLogger("database");
 export default () => {
   const connect = () => {
     mongoose.set("strictQuery", false);
     mongoose
       .connect(config.DATABASE_URL!)
       .then(() => {
-        console.log("Successfully connected to MongoDB");
+        log.info("Successfully connected to MongoDB");
       })
       .catch((e) => {
-        console.error("Connection error", e.message);
+        log.error("Connection error", e.message);
         // this will exit the process with an error code and get logs
         return process.exit(1);
       });

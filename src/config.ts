@@ -1,5 +1,5 @@
 import dotenv from "dotenv";
-
+import bunyan from "bunyan";
 dotenv.config({});
 class Config {
   public DATABASE_URL: string | undefined;
@@ -23,6 +23,10 @@ class Config {
     this.REDIS_HOST = process.env.REDIS_HOST || "";
   }
 
+  // create a logger
+  public createLogger(name: string): bunyan {
+    return bunyan.createLogger({ name, level: "debug" });
+  }
   //   make sure the environment variables are set and set correctly
   public validate(): void {
     for (const [key, value] of Object.keys(this)) {

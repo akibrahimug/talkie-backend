@@ -1,4 +1,9 @@
 import {
+  CustomError,
+  IError,
+  IErrorResponse,
+} from "./Shared/globals/Helpers/error-handler";
+import {
   Application,
   json,
   urlencoded,
@@ -20,10 +25,13 @@ import { config } from "./config";
 import { Server } from "socket.io";
 import { createClient } from "redis";
 import { createAdapter } from "@socket.io/redis-adapter";
+import applicationRoutes from "./routes";
+import Logger from "bunyan";
 
 // use this port number for development
 //and we will use it in AWS for load balancing and security groups
 const SERVER_PORT = process.env.PORT || 5000;
+const log: Logger = config.createLogger("server");
 export class TalkieServer {
   // express instance
   private app: Application;
@@ -65,9 +73,34 @@ export class TalkieServer {
     );
   }
 
-  private routesMiddleware(app: Application): void {}
+  // manage all the routes
+  private routesMiddleware(app: Application): void {
+    applicationRoutes(app);
+  }
   //   catch all errors
-  private globalErrorHanler(app: Application): void {}
+  private globalErrorHanler(app: Application): void {
+    // catch all route errors
+    app.all("*", (req: Request, res: Response) => {
+      res.status(HTTP_STATUS.NOT_FOUND).json({
+        status: HTTP_STATUS.NOT_FOUND,
+        message: `${req.originalUrl} not found`,
+      });
+    });
+    app.use(
+      (
+        error: IErrorResponse,
+        req: Request,
+        res: Response,
+        next: NextFunction
+      ) => {
+        log.error(error);
+        if (error instanceof CustomError) {
+          return res.status(error.statusCode).json(error.serializeErrors());
+        }
+        next();
+      }
+    );
+  }
   private async startServer(app: Application): Promise<void> {
     try {
       const httpServer: http.Server = new http.Server(app);
@@ -75,7 +108,7 @@ export class TalkieServer {
       this.startHttpServer(httpServer);
       this.socketIOCOnnections(socketIO);
     } catch (e) {
-      console.log(e);
+      log.error(e);
     }
   }
 
@@ -112,7 +145,7 @@ export class TalkieServer {
     httpServer.listen(SERVER_PORT, () => {
       // Dont use console.log in production
       // use a logger library
-      console.log(`Server started on port ${SERVER_PORT}`);
+      log.info(`Server started on port ${SERVER_PORT}`);
     });
   }
 
