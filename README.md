@@ -9,6 +9,7 @@
 - Git => Version Control
 - GitHub => Code hosting
 - AWS => Cloud computing platform
+- Banyan => For logging errors in production
 
 //App Features
 

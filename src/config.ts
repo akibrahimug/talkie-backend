@@ -1,6 +1,11 @@
+<<<<<<< HEAD
 import dotenv from 'dotenv';
 import bunyan from 'bunyan';
 
+=======
+import dotenv from "dotenv";
+import bunyan from "bunyan";
+>>>>>>> 38620003d91b652f55dba3bfff93bebd13179c58
 dotenv.config({});
 
 class Config {
@@ -30,6 +35,10 @@ class Config {
     return bunyan.createLogger({ name, level: 'debug' });
   }
 
+  // create a logger
+  public createLogger(name: string): bunyan {
+    return bunyan.createLogger({ name, level: "debug" });
+  }
   //   make sure the environment variables are set and set correctly
   public validate(): void {
     for (const [key, value] of Object.keys(this)) {
