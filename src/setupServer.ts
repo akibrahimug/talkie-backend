@@ -2,7 +2,7 @@ import {
   CustomError,
   IError,
   IErrorResponse,
-} from "./Shared/globals/Helpers/error-handler";
+} from './Shared/globals/Helpers/error-handler';
 import {
   Application,
   json,
@@ -19,35 +19,18 @@ import hpp from 'hpp';
 import cookieSession from 'cookie-session';
 import HTTP_STATUS from 'http-status-codes';
 import 'express-async-errors';
-// compression library helps compress the data from the server (response)
-<<<<<<< HEAD
 import compression from 'compression';
 import { config } from './config';
 import { Server } from 'socket.io';
 import { createClient } from 'redis';
 import { createAdapter } from '@socket.io/redis-adapter';
 import Logger from 'bunyan';
-=======
-import compression from "compression";
-import { config } from "./config";
-import { Server } from "socket.io";
-import { createClient } from "redis";
-import { createAdapter } from "@socket.io/redis-adapter";
-import applicationRoutes from "./routes";
-import Logger from "bunyan";
->>>>>>> 38620003d91b652f55dba3bfff93bebd13179c58
+import applicationRoutes from './routes';
 
 // use this port number for development
 //and we will use it in AWS for load balancing and security groups
 const SERVER_PORT = process.env.PORT || 5000;
-<<<<<<< HEAD
-
-// create a logger instance
-const logger: Logger = config.createLogger('talkie-server');
-
-=======
-const log: Logger = config.createLogger("server");
->>>>>>> 38620003d91b652f55dba3bfff93bebd13179c58
+const log: Logger = config.createLogger('server');
 export class TalkieServer {
   // express instance
   private app: Application;
@@ -96,7 +79,7 @@ export class TalkieServer {
   //   catch all errors
   private globalErrorHanler(app: Application): void {
     // catch all route errors
-    app.all("*", (req: Request, res: Response) => {
+    app.all('*', (req: Request, res: Response) => {
       res.status(HTTP_STATUS.NOT_FOUND).json({
         status: HTTP_STATUS.NOT_FOUND,
         message: `${req.originalUrl} not found`,
@@ -124,11 +107,7 @@ export class TalkieServer {
       this.startHttpServer(httpServer);
       this.socketIOCOnnections(socketIO);
     } catch (e) {
-<<<<<<< HEAD
-      logger.error(e);
-=======
       log.error(e);
->>>>>>> 38620003d91b652f55dba3bfff93bebd13179c58
     }
   }
 
@@ -165,11 +144,8 @@ export class TalkieServer {
     httpServer.listen(SERVER_PORT, () => {
       // Dont use console.log in production
       // use a logger library
-<<<<<<< HEAD
-      logger.info(`Server started on port ${SERVER_PORT}`);
-=======
+
       log.info(`Server started on port ${SERVER_PORT}`);
->>>>>>> 38620003d91b652f55dba3bfff93bebd13179c58
     });
   }
 
