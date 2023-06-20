@@ -2,7 +2,7 @@ import {
   CustomError,
   IError,
   IErrorResponse,
-} from './Shared/globals/Helpers/error-handler';
+} from '@global/Helpers/error-handler';
 import {
   Application,
   json,
@@ -20,12 +20,12 @@ import cookieSession from 'cookie-session';
 import HTTP_STATUS from 'http-status-codes';
 import 'express-async-errors';
 import compression from 'compression';
-import { config } from './config';
+import { config } from '@root/config';
 import { Server } from 'socket.io';
 import { createClient } from 'redis';
 import { createAdapter } from '@socket.io/redis-adapter';
 import Logger from 'bunyan';
-import applicationRoutes from './routes';
+import applicationRoutes from '@root/routes';
 
 // use this port number for development
 //and we will use it in AWS for load balancing and security groups
@@ -149,5 +149,7 @@ export class TalkieServer {
     });
   }
 
-  private socketIOCOnnections(io: Server): void {}
+  private socketIOCOnnections(io: Server): void {
+    log.info('socketIOConnetions');
+  }
 }
