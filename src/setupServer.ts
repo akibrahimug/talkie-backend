@@ -2,7 +2,7 @@ import {
   CustomError,
   IError,
   IErrorResponse,
-} from '@global/Helpers/error-handler';
+} from '@global/helpers/error-handler';
 import {
   Application,
   json,
