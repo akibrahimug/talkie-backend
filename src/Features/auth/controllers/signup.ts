@@ -13,6 +13,9 @@ import { IUserDocument } from '@user/interfaces/user.interfaces';
 import { UserCache } from '@service/redis/user.cache';
 import { omit } from 'lodash';
 import { authQueue } from '@service/queues/auth.queue';
+import { userQueue } from '@service/queues/user.queue';
+import JWT from 'jsonwebtoken';
+import { config } from '@root/config';
 
 const userCache: UserCache = new UserCache();
 export class Signup {
@@ -21,7 +24,7 @@ export class Signup {
     const { username, password, email, avatarColor, avatarImage } = req.body;
 
     const checkIfUserExist: IAuthDocument =
-      await authService.getUerByUsernameOrEmail(username, email);
+      await authService.getUserByUsernameOrEmail(username, email);
     if (checkIfUserExist) {
       throw new BadRequestError('Invalid credentials');
     }
@@ -38,6 +41,7 @@ export class Signup {
       avatarColor,
     });
 
+    // Upload avatarImage to cloudinary
     const result: UploadApiResponse = (await uploads(
       avatarImage,
       `${userObjectId}`,
@@ -66,10 +70,33 @@ export class Signup {
       'avatarColor',
     ]);
     authQueue.addAuthUserJob('addAuthUserToDB', { value: userDataForCache });
+    userQueue.addUserJob('addUserToDB', { value: userDataForCache });
 
-    res
-      .status(HTTP_STATUS.CREATED)
-      .json({ message: 'User created succesefully', authData });
+    // create token and save it to the session
+    const userJWT: string = Signup.prototype.signupToken(
+      authData,
+      userObjectId
+    );
+    req.session = { jwt: userJWT };
+
+    res.status(HTTP_STATUS.CREATED).json({
+      message: 'User created succesefully',
+      user: userDataForCache,
+      token: userJWT,
+    });
+  }
+
+  private signupToken(data: IAuthDocument, userObjectId: ObjectId): string {
+    return JWT.sign(
+      {
+        userId: userObjectId,
+        uId: data.uId,
+        email: data.email,
+        username: data.username,
+        avatarColor: data.avatarColor,
+      },
+      config.JWT_TOKEN!
+    );
   }
 
   private signupData(data: ISignUpData): IAuthDocument {
