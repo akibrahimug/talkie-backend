@@ -11,6 +11,8 @@ import { UploadApiResponse } from 'cloudinary';
 import HTTP_STATUS from 'http-status-codes';
 import { IUserDocument } from '@user/interfaces/user.interfaces';
 import { UserCache } from '@service/redis/user.cache';
+import { omit } from 'lodash';
+import { authQueue } from '@service/queues/auth.queue';
 
 const userCache: UserCache = new UserCache();
 export class Signup {
@@ -53,6 +55,18 @@ export class Signup {
     );
     userDataForCache.profilePicture = `https://res.cloudinary.com/doyg3ppyn/image/upload/v${result.version}/${userObjectId}`;
     await userCache.saveUserToCahce(`${userObjectId}`, uId, userDataForCache);
+
+    // Add data to mongoDb
+    // we are omitting some of the data in cache from the data we are sending to the data base
+    omit(userDataForCache, [
+      'uId',
+      'username',
+      'password',
+      'email',
+      'avatarColor',
+    ]);
+    authQueue.addAuthUserJob('addAuthUserToDB', { value: userDataForCache });
+
     res
       .status(HTTP_STATUS.CREATED)
       .json({ message: 'User created succesefully', authData });
