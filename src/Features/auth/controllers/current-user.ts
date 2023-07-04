@@ -1,0 +1,31 @@
+import { Response, Request } from 'express';
+import { UserCache } from '@service/redis/user.cache';
+import { IUserDocument } from '@user/interfaces/user.interfaces';
+import { userService } from '@service/db/user.service';
+import HTTP_STATUS from 'http-status-codes';
+
+const userCache: UserCache = new UserCache();
+
+export class CurrentUser {
+  public async read(req: Request, res: Response): Promise<void> {
+    let isUser = false;
+    let token = null;
+    let user = null;
+
+    const cachedUser: IUserDocument = (await userCache.getUserFromCache(
+      `${req.currentUser!.userId}`
+    )) as IUserDocument;
+
+    const exsitingUser: IUserDocument = cachedUser
+      ? cachedUser
+      : await userService.getUserById(`${req.currentUser!.userId}`);
+
+    if (Object.keys(exsitingUser).length) {
+      isUser = true;
+      token = req.session?.jwt;
+      user = exsitingUser;
+    }
+
+    res.status(HTTP_STATUS.OK).json({ token, isUser, user });
+  }
+}
