@@ -7,6 +7,8 @@ import { BadRequestError } from '@global/helpers/error-handler';
 import { authService } from '@service/db/auth.service';
 import { loginSchema } from '@auth/schemes/signin';
 import { IAuthDocument } from '@auth/interfaces/auth.interface';
+import { IUserDocument } from '@user/interfaces/user.interfaces';
+import { userService } from '@service/db/user.service';
 export class SignIn {
   @joiValidation(loginSchema)
   public async read(req: Request, res: Response): Promise<void> {
@@ -25,9 +27,13 @@ export class SignIn {
       throw new BadRequestError('Invlalid credentials');
     }
 
+    const user: IUserDocument = await userService.getUserByAuthId(
+      `${existingUser._id}`
+    );
+
     const userJWT: string = JWT.sign(
       {
-        userId: existingUser._id,
+        userId: user._id,
         uId: existingUser.uId,
         email: existingUser.email,
         username: existingUser.username,
@@ -36,9 +42,17 @@ export class SignIn {
       config.JWT_TOKEN!
     );
     req.session = { jwt: userJWT };
+    const userDocument: IUserDocument = {
+      ...user,
+      authId: existingUser!._id,
+      avatarColor: existingUser!.avatarColor,
+      email: existingUser!.email,
+      uId: existingUser!.uId,
+      createdAt: existingUser!.createdAt,
+    } as IUserDocument;
     res.status(HTTP_STATUS.OK).json({
       message: 'User login successful',
-      user: existingUser,
+      user: userDocument,
       token: userJWT,
     });
   }

@@ -62,15 +62,15 @@ export class Signup {
 
     // Add data to mongoDb
     // we are omitting some of the data in cache from the data we are sending to the data base
-    omit(userDataForCache, [
+    const userResult = omit(userDataForCache, [
       'uId',
       'username',
       'password',
       'email',
       'avatarColor',
     ]);
-    authQueue.addAuthUserJob('addAuthUserToDB', { value: userDataForCache });
-    userQueue.addUserJob('addUserToDB', { value: userDataForCache });
+    authQueue.addAuthUserJob('addAuthUserToDB', { value: authData });
+    userQueue.addUserJob('addUserToDB', { value: userResult });
 
     // create token and save it to the session
     const userJWT: string = Signup.prototype.signupToken(
