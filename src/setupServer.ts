@@ -31,7 +31,7 @@ import applicationRoutes from '@root/routes';
 //and we will use it in AWS for load balancing and security groups
 const SERVER_PORT = process.env.PORT || 5000;
 const log: Logger = config.createLogger('server');
-export class TalkieServer {
+export class TalkyServer {
   // express instance
   private app: Application;
   //   use the express instance to create the app
