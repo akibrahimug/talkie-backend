@@ -80,7 +80,7 @@ export class Signup {
     req.session = { jwt: userJWT };
 
     res.status(HTTP_STATUS.CREATED).json({
-      message: 'User created succesefully',
+      message: 'User created successfully',
       user: userDataForCache,
       token: userJWT,
     });
