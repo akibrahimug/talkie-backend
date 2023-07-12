@@ -1,5 +1,5 @@
 import { IAuthDocument } from '@auth/interfaces/auth.interface';
-import { AuthModel } from '@auth/interfaces/auth.schema';
+import { AuthModel } from '@auth/models/auth.schema';
 import { Helpers } from '@global/helpers/helpers';
 
 class AuthService {

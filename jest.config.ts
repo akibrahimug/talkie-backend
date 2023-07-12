@@ -34,7 +34,7 @@ const config: Config = {
     '@service/(.*)': ['<rootDir>/src/Shared/services/$1'],
     '@socket/(.*)': ['<rootDir>/src/Shared/sockets/$1'],
     '@worker/(.*)': ['<rootDir>/src/Shared/workers/$1'],
-    '@post/(.*)': ['<rootDir>/src/Shared/post/$1'],
+    '@post/(.*)': ['<rootDir>/src/Features/post/$1'],
     '@reaction/(.*)': ['<rootDir>/src/Features/reactions/$1'],
     '@comment/(.*)': ['<rootDir>/src/Features/comments/$1'],
     '@notification/(.*)': ['<rootDir>/src/Features/notifications/$1'],
