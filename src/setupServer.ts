@@ -26,6 +26,7 @@ import { createClient } from 'redis';
 import { createAdapter } from '@socket.io/redis-adapter';
 import Logger from 'bunyan';
 import applicationRoutes from '@root/routes';
+import { SocketIoPostHandler } from '@socket/post.sockets';
 
 // use this port number for development
 //and we will use it in AWS for load balancing and security groups
@@ -144,12 +145,13 @@ export class TalkyServer {
     httpServer.listen(SERVER_PORT, () => {
       // Dont use console.log in production
       // use a logger library
-
       log.info(`Server started on port ${SERVER_PORT}`);
     });
   }
 
   private socketIOCOnnections(io: Server): void {
-    log.info('socketIOConnetions');
+    const postSocketHandler: SocketIoPostHandler = new SocketIoPostHandler(io);
+
+    postSocketHandler.listen();
   }
 }
