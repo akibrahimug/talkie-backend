@@ -26,7 +26,7 @@ import { createClient } from 'redis';
 import { createAdapter } from '@socket.io/redis-adapter';
 import Logger from 'bunyan';
 import applicationRoutes from '@root/routes';
-import { SocketIoPostHandler } from '@socket/post.sockets';
+import { SocketIoPostHandler } from '@socket/post.socket';
 
 // use this port number for development
 //and we will use it in AWS for load balancing and security groups

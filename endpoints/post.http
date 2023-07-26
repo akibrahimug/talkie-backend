@@ -15,3 +15,94 @@ withCredentials: true
   "profilePicture": "https://res.cloudinary.com/doyg3ppyn/image/upload/v1688363053/64a2602c69ce7813cd2f9fa2.png",
   "feelings": "happy"
 }
+
+
+###
+POST {{baseUrl}}/{{urlPath}}/post/image/post
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+{
+  "post": "This is a test post with image 1",
+  "bgColor": "#4aa1f3",
+  "privacy": "Public",
+  "gifUrl": "",
+  "profilePicture": "https://res.cloudinary.com/doyg3ppyn/image/upload/v1688363053/64a2602c69ce7813cd2f9fa2.png",
+  "feelings": "happy",
+  "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAMAAACahl6sAAAArlBMVEUAAAA8G5c7G5gcDEw8G5ceDUwPBiZaKeRaKORaKORaKeRaKORaKORaJ+NLIr4vFHksE24tFHEdDUsXCToOBiUMBR9aKeRPJMpEHrBKIL0uFHYdDEoVCTZaKeNaKONPJMpZJ+JMIr5LIr5LIb47G5g8G5dEH6s+GZYvFXgqEmtaKONaKeRFH7FRJMlbJ+NLIb5EHqtJIL1GH7E9GpdDHqpDHqsnEmUdDUsvEnBaKeSDlqn2AAAAOXRSTlMAf5QKalUH/Pn38OvVyLBJNE4kFxQO9MeUgV4eG9zPz7yWkYqGd2dWUzzfv7evp6F/em9sa0tKOCquZeyjAAACEklEQVR42u3cR1LrUBSE4fNkni0r2AYnMDnDy4HU+98YVRTMZEvXoz6H/nbwV0nqW3cgExEREREREREREREREfl0Vn2LoPcLPQtgXCFEyCUQIWRSI0TIbo4IIdPzHAFC+v9LIELINRAj5ItCyCiEjULY+A6Zn8cI6dcIEXL/DSFCJkOECFkVCBFyAUQIORwhRMjRMUKE3JYIEXI1QISQ+RkQIeRliRAh4yEihPSvFwgR8huIELJXI0TIuECIkJscIUL2gQghsxOECJlUCBFyB0QI6R3kMUJGQISQ2U+ECLktECLkDxAiZPq1yQ9/Ic0yhZBRCBuFsFEIG4WwUQgbhbBRCBuFsFEIG4WwUQgbhbBRCBuFsFEIG4WwUQgbhbBRCBuFsGkN+bfTZGpsWkKaDR6MzjYh5dj4bBFS8T1XW4Usj4xRasjwgPQfPIkhg10jlRZSTYxVUsjJzGilhOwbse4h+Y0x6xxSMK7gFiHDe+PWMWS5Z+SaQ7ysYGuIlxVMCznlXcGkkJp4BVtDvKxgQsiFObE5pNgxLzaG1PTr0S1kZI6sD1n85V/B1hAvK9ghpLwzX9aEHHNelSSHjA7Nm8YQR1/d5hDPFMJGIWwUwuYtxOFhd0PIpbn2EVKuzLf3kFN/h6vGkO9z8y4DMLgy/zJg8WgBZKieLYLszNUVw3pP/l9zERERERERERERERERkVSvLGxdq2InYCgAAAAASUVORK5CYII="
+}
+
+
+###
+GET  {{baseUrl}}/{{urlPath}}/post/all/1
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+
+###
+GET  {{baseUrl}}/{{urlPath}}/post/images/1
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+
+###
+DELETE   {{baseUrl}}/{{urlPath}}/post/64af1a7283884b43bffc4f56
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+###
+PUT {{baseUrl}}/{{urlPath}}/post/64b1a96e83f0f3c75076d289
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+{
+  "post": "This is a test post 1 updated",
+  "bgColor": "black",
+  "privacy": "Private",
+  "gifUrl": "",
+  "profilePicture": "https://res.cloudinary.com/doyg3ppyn/image/upload/v1688363053/64a2602c69ce7813cd2f9fa2.png",
+  "feelings": "sad",
+  "imgId": "",
+  "imgVersion": ""
+}
+
+###
+PUT {{baseUrl}}/{{urlPath}}/post/image/64b1a96e83f0f3c75076d289
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+{
+  "post": "This is a test post 1 updated with new image",
+  "bgColor": "black",
+  "privacy": "Private",
+  "gifUrl": "",
+  "profilePicture": "https://res.cloudinary.com/doyg3ppyn/image/upload/v1688363053/64a2602c69ce7813cd2f9fa2.png",
+  "feelings": "sad",
+  "imgId": "",
+  "imgVersion": "",
+  "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAMAAACahl6sAAAArlBMVEUAAAA8G5c7G5gcDEw8G5ceDUwPBiZaKeRaKORaKORaKeRaKORaKORaJ+NLIr4vFHksE24tFHEdDUsXCToOBiUMBR9aKeRPJMpEHrBKIL0uFHYdDEoVCTZaKeNaKONPJMpZJ+JMIr5LIr5LIb47G5g8G5dEH6s+GZYvFXgqEmtaKONaKeRFH7FRJMlbJ+NLIb5EHqtJIL1GH7E9GpdDHqpDHqsnEmUdDUsvEnBaKeSDlqn2AAAAOXRSTlMAf5QKalUH/Pn38OvVyLBJNE4kFxQO9MeUgV4eG9zPz7yWkYqGd2dWUzzfv7evp6F/em9sa0tKOCquZeyjAAACEklEQVR42u3cR1LrUBSE4fNkni0r2AYnMDnDy4HU+98YVRTMZEvXoz6H/nbwV0nqW3cgExEREREREREREREREfl0Vn2LoPcLPQtgXCFEyCUQIWRSI0TIbo4IIdPzHAFC+v9LIELINRAj5ItCyCiEjULY+A6Zn8cI6dcIEXL/DSFCJkOECFkVCBFyAUQIORwhRMjRMUKE3JYIEXI1QISQ+RkQIeRliRAh4yEihPSvFwgR8huIELJXI0TIuECIkJscIUL2gQghsxOECJlUCBFyB0QI6R3kMUJGQISQ2U+ECLktECLkDxAiZPq1yQ9/Ic0yhZBRCBuFsFEIG4WwUQgbhbBRCBuFsFEIG4WwUQgbhbBRCBuFsFEIG4WwUQgbhbBRCBuFsGkN+bfTZGpsWkKaDR6MzjYh5dj4bBFS8T1XW4Usj4xRasjwgPQfPIkhg10jlRZSTYxVUsjJzGilhOwbse4h+Y0x6xxSMK7gFiHDe+PWMWS5Z+SaQ7ysYGuIlxVMCznlXcGkkJp4BVtDvKxgQsiFObE5pNgxLzaG1PTr0S1kZI6sD1n85V/B1hAvK9ghpLwzX9aEHHNelSSHjA7Nm8YQR1/d5hDPFMJGIWwUwuYtxOFhd0PIpbn2EVKuzLf3kFN/h6vGkO9z8y4DMLgy/zJg8WgBZKieLYLszNUVw3pP/l9zERERERERERERERERkVSvLGxdq2InYCgAAAAASUVORK5CYII="
+}
+
+###
+PUT {{baseUrl}}/{{urlPath}}/post/image/64b1a96e83f0f3c75076d289
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+{
+  "post": "This is a test post 1 updated with old image",
+  "bgColor": "black",
+  "privacy": "Private",
+  "gifUrl": "",
+  "profilePicture": "https://res.cloudinary.com/doyg3ppyn/image/upload/v1688363053/64a2602c69ce7813cd2f9fa2.png",
+  "feelings": "happy",
+  "imgId": "sxqjysiujmtkvbcljz6b",
+  "imgVersion": "1689424186",
+  "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAMAAACahl6sAAAArlBMVEUAAAA8G5c7G5gcDEw8G5ceDUwPBiZaKeRaKORaKORaKeRaKORaKORaJ+NLIr4vFHksE24tFHEdDUsXCToOBiUMBR9aKeRPJMpEHrBKIL0uFHYdDEoVCTZaKeNaKONPJMpZJ+JMIr5LIr5LIb47G5g8G5dEH6s+GZYvFXgqEmtaKONaKeRFH7FRJMlbJ+NLIb5EHqtJIL1GH7E9GpdDHqpDHqsnEmUdDUsvEnBaKeSDlqn2AAAAOXRSTlMAf5QKalUH/Pn38OvVyLBJNE4kFxQO9MeUgV4eG9zPz7yWkYqGd2dWUzzfv7evp6F/em9sa0tKOCquZeyjAAACEklEQVR42u3cR1LrUBSE4fNkni0r2AYnMDnDy4HU+98YVRTMZEvXoz6H/nbwV0nqW3cgExEREREREREREREREfl0Vn2LoPcLPQtgXCFEyCUQIWRSI0TIbo4IIdPzHAFC+v9LIELINRAj5ItCyCiEjULY+A6Zn8cI6dcIEXL/DSFCJkOECFkVCBFyAUQIORwhRMjRMUKE3JYIEXI1QISQ+RkQIeRliRAh4yEihPSvFwgR8huIELJXI0TIuECIkJscIUL2gQghsxOECJlUCBFyB0QI6R3kMUJGQISQ2U+ECLktECLkDxAiZPq1yQ9/Ic0yhZBRCBuFsFEIG4WwUQgbhbBRCBuFsFEIG4WwUQgbhbBRCBuFsFEIG4WwUQgbhbBRCBuFsGkN+bfTZGpsWkKaDR6MzjYh5dj4bBFS8T1XW4Usj4xRasjwgPQfPIkhg10jlRZSTYxVUsjJzGilhOwbse4h+Y0x6xxSMK7gFiHDe+PWMWS5Z+SaQ7ysYGuIlxVMCznlXcGkkJp4BVtDvKxgQsiFObE5pNgxLzaG1PTr0S1kZI6sD1n85V/B1hAvK9ghpLwzX9aEHHNelSSHjA7Nm8YQR1/d5hDPFMJGIWwUwuYtxOFhd0PIpbn2EVKuzLf3kFN/h6vGkO9z8y4DMLgy/zJg8WgBZKieLYLszNUVw3pP/l9zERERERERERERERERkVSvLGxdq2InYCgAAAAASUVORK5CYII="
+}
