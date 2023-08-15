@@ -90,7 +90,7 @@ export class PostCache extends BaseCache {
         await this.client.connect();
       }
 
-      const postCount: string[] = await this.client.HMGET(
+      const postsCount: string[] = await this.client.HMGET(
         `users:${currentUserId}`,
         'postsCount'
       );
@@ -100,7 +100,7 @@ export class PostCache extends BaseCache {
         value: `${key}`,
       });
       multi.HSET(`posts:${key}`, dataToSave);
-      const count: number = parseInt(postCount[0], 10) + 1;
+      const count: number = parseInt(postsCount[0], 10) + 1;
       multi.HSET(`users:${currentUserId}`, ['postsCount', count]);
       multi.exec();
     } catch (error) {
@@ -257,7 +257,7 @@ export class PostCache extends BaseCache {
       if (!this.client.isOpen) {
         await this.client.connect();
       }
-      const postCount: string[] = await this.client.HMGET(
+      const postsCount: string[] = await this.client.HMGET(
         `users:${currentUserId}`,
         'postsCount'
       );
@@ -266,7 +266,7 @@ export class PostCache extends BaseCache {
       multi.DEL(`posts:${key}`);
       multi.DEL(`comments:${key}`);
       multi.DEL(`reactions:${key}`);
-      const count: number = parseInt(postCount[0], 10) - 1;
+      const count: number = parseInt(postsCount[0], 10) - 1;
       multi.HSET(`users:${currentUserId}`, ['postsCount', count]);
       await multi.exec();
     } catch (error) {
