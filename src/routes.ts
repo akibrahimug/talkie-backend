@@ -2,6 +2,7 @@ import { authRoutes } from '@auth/routes/authRoutes';
 import { currentUserRoutes } from '@auth/routes/currentRoutes';
 import { authmiddleware } from '@global/helpers/auth.middleware';
 import { postRoutes } from '@post/routes/post.routes';
+import { reactionsRoutes } from '@reaction/routes/reactions.routes';
 import { serverAdapter } from '@service/queues/base.queue';
 import { Application } from 'express';
 
@@ -15,6 +16,7 @@ export default (app: Application) => {
     // only for authenticated users
     app.use(BASE_PATH, authmiddleware.verifyUser, currentUserRoutes.routes());
     app.use(BASE_PATH, authmiddleware.verifyUser, postRoutes.routes());
+    app.use(BASE_PATH, authmiddleware.verifyUser, reactionsRoutes.routes());
   };
   routes();
 };
