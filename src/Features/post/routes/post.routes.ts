@@ -36,7 +36,7 @@ class PostRoutes {
     this.router.put(
       '/post/:postId',
       authmiddleware.checkAuthentication,
-      Update.prototype.post
+      Update.prototype.posts
     );
     this.router.put(
       '/post/image/:postId',
