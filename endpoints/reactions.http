@@ -10,17 +10,38 @@ withCredentials: true
 {
   "userTo": "64da78556dc5bcbcd97ba4c7",
   "postId": "64da78b96dc5bcbcd97ba4cf",
-  "type": "love",
-  "previousReaction": "sad",
-  "postReactions": {"like":0,"love":1,"happy":0,"sad":0,"wow":0,"angry":0},
+  "type": "like",
+  "previousReaction": "",
+  "postReactions": {"like":1,"love":0,"happy":0,"sad":0,"wow":0,"angry":0},
   "profilePicture": "https://res.cloudinary.com/doyg3ppyn/image/upload/v1688363053/64a2602c69ce7813cd2f9fa2.png"
 }
 
 
 ###
-POST {{baseUrl}}/{{urlPath}}/post/reaction/64da78b96dc5bcbcd97ba4cf/love/{"like":0,"love":0,"happy":0,"sad":0,"wow":0,"angry":0}
+DELETE  {{baseUrl}}/{{urlPath}}/post/reaction/64da78b96dc5bcbcd97ba4cf/like/{"like":0,"love":0,"happy":0,"sad":0,"wow":0,"angry":0}
 Content-Type: application/json
 Accept: application/json
 withCredentials: true
 
 {}
+
+
+###
+GET {{baseUrl}}/{{urlPath}}/post/reactions/64da78b96dc5bcbcd97ba4cf/
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+
+###
+GET {{baseUrl}}/{{urlPath}}/post/single/reaction/username/drilll/64da78b96dc5bcbcd97ba4cf
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+
+###
+GET {{baseUrl}}/{{urlPath}}/post/reactions/username/drilll
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
