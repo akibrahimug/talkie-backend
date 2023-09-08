@@ -1,5 +1,6 @@
 import { authRoutes } from '@auth/routes/authRoutes';
 import { currentUserRoutes } from '@auth/routes/currentRoutes';
+import { commentRoutes } from '@comment/routes/comment.routes';
 import { authmiddleware } from '@global/helpers/auth.middleware';
 import { postRoutes } from '@post/routes/post.routes';
 import { reactionsRoutes } from '@reaction/routes/reactions.routes';
@@ -17,6 +18,7 @@ export default (app: Application) => {
     app.use(BASE_PATH, authmiddleware.verifyUser, currentUserRoutes.routes());
     app.use(BASE_PATH, authmiddleware.verifyUser, postRoutes.routes());
     app.use(BASE_PATH, authmiddleware.verifyUser, reactionsRoutes.routes());
+    app.use(BASE_PATH, authmiddleware.verifyUser, commentRoutes.routes());
   };
   routes();
 };
