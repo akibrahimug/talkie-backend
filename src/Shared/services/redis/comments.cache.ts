@@ -7,7 +7,7 @@ import { find } from 'lodash';
 import {
   ICommentDocument,
   ICommentNameList,
-} from '@comment/interfaces/comments.interface';
+} from '@comment/interfaces/comment.interface';
 const log: Logger = config.createLogger('userCahce');
 
 export class CommentCache extends BaseCache {
@@ -30,10 +30,10 @@ export class CommentCache extends BaseCache {
       );
       let count: number = Helpers.parseJson(commentsCount[0]) as number;
       count += 1;
-      await this.client.HSET(`comments:${postId}`, 'commentsCount', `${count}`);
-    } catch (err) {
-      log.error(err);
-      throw new ServerError('Server error. Try again');
+      await this.client.HSET(`posts:${postId}`, 'commentsCount', `${count}`);
+    } catch (error) {
+      log.error(error);
+      throw new ServerError('Server error. Try again.');
     }
   }
 
