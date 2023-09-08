@@ -1,4 +1,4 @@
-import { ICommentDocument } from '@comment/interfaces/comments.interface';
+import { ICommentDocument } from '@comment/interfaces/comment.interface';
 import { IReactionDocument } from '@reaction/interfaces/reaction.interface';
 import { Server, Socket } from 'socket.io';
 
