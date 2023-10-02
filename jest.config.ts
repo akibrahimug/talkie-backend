@@ -36,6 +36,7 @@ const config: Config = {
     '@worker/(.*)': ['<rootDir>/src/Shared/workers/$1'],
     '@post/(.*)': ['<rootDir>/src/Features/post/$1'],
     '@reaction/(.*)': ['<rootDir>/src/Features/reactions/$1'],
+    '@follower/(.*)': ['<rootDir>/src/Features/followers/$1'],
     '@comment/(.*)': ['<rootDir>/src/Features/comments/$1'],
     '@notification/(.*)': ['<rootDir>/src/Features/notifications/$1'],
     '@image/(.*)': ['<rootDir>/src/Features/images/$1'],
