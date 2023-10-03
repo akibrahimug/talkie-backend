@@ -38,7 +38,7 @@ const config: Config = {
     '@reaction/(.*)': ['<rootDir>/src/Features/reactions/$1'],
     '@follower/(.*)': ['<rootDir>/src/Features/followers/$1'],
     '@comment/(.*)': ['<rootDir>/src/Features/comments/$1'],
-    '@notification/(.*)': ['<rootDir>/src/Features/notifications/$1'],
+    '@notification/(.*)': ['<rootDir>/src/Features/notification/$1'],
     '@image/(.*)': ['<rootDir>/src/Features/images/$1'],
     '@chat/(.*)': ['<rootDir>/src/Features/chat/$1'],
     '@root/(.*)': ['<rootDir>/src/$1'],
