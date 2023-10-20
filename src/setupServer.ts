@@ -31,6 +31,7 @@ import { SocketIoFollowerHandler } from '@socket/follower.socket';
 import { SocketIoUserHandler } from '@socket/user.socket';
 import { SocketIONotificationHandler } from '@socket/notification';
 import { SocketIOImageHandler } from '@socket/image';
+import { SocketIOChatHandler } from '@socket/chat';
 
 // use this port number for development
 //and we will use it in AWS for load balancing and security groups
@@ -158,6 +159,7 @@ export class TalkyServer {
     const followerSocketHandler: SocketIoFollowerHandler =
       new SocketIoFollowerHandler(io);
     const userSocketHandler: SocketIoUserHandler = new SocketIoUserHandler(io);
+    const chatSocketHandler: SocketIOChatHandler = new SocketIOChatHandler(io);
     const notificationSocketHandler: SocketIONotificationHandler =
       new SocketIONotificationHandler();
     const ImageSocketHandler: SocketIOImageHandler = new SocketIOImageHandler();
@@ -167,5 +169,6 @@ export class TalkyServer {
     userSocketHandler.listen();
     notificationSocketHandler.listen(io);
     ImageSocketHandler.listen(io);
+    chatSocketHandler.listen();
   }
 }
