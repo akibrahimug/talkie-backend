@@ -158,7 +158,7 @@ describe('Add', () => {
         {},
         {
           image:
-            'https://res.cloudinary.com/dyamr9ym3/image/upload/v1234/123456',
+            'https://res.cloudinary.com/doyg3ppyn/image/upload/v1234/123456',
         },
         authUserPayload
       ) as Request;
