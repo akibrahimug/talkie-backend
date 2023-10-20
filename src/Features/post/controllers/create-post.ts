@@ -3,6 +3,7 @@ import { uploads } from '@global/helpers/cloudinary-upload';
 import { BadRequestError } from '@global/helpers/error-handler';
 import { IPostDocument } from '@post/interfaces/post.interface';
 import { postSchema, postWithImageSchema } from '@post/schemes/post.schemes';
+import { imageQueue } from '@service/queues/image.queue';
 import { postQueue } from '@service/queues/post.queue';
 import { PostCache } from '@service/redis/post.cache';
 import { socketIOPostObject } from '@socket/post.socket';
@@ -115,6 +116,11 @@ export class Create {
     });
 
     // call image queue to add image to mongodb
+    imageQueue.addImageJob('addImageToDB', {
+      key: `${req.currentUser!.userId}`,
+      imgId: result.public_id,
+      imgVersion: result.version.toString(),
+    });
 
     res
       .status(HTTP_SERVER.CREATED)
