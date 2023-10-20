@@ -31,7 +31,7 @@ export class Signup {
 
     const authObjectId: ObjectId = new ObjectId();
     const userObjectId: ObjectId = new ObjectId();
-    const uId = `${Helpers.getRandomintegers(12)}`;
+    const uId = `${Helpers.generateRandomIntegers(12)}`;
     const authData: IAuthDocument = Signup.prototype.signupData({
       _id: authObjectId,
       uId,
@@ -58,7 +58,7 @@ export class Signup {
       userObjectId
     );
     userDataForCache.profilePicture = `https://res.cloudinary.com/doyg3ppyn/image/upload/v${result.version}/${userObjectId}`;
-    await userCache.saveUserToCahce(`${userObjectId}`, uId, userDataForCache);
+    await userCache.saveUserToCache(`${userObjectId}`, uId, userDataForCache);
 
     // Add data to mongoDb
     // we are omitting some of the data in cache from the data we are sending to the data base
@@ -105,7 +105,7 @@ export class Signup {
       _id,
       uId,
       username: Helpers.firstLetterUppercase(username),
-      email: Helpers.lowercase(email),
+      email: Helpers.lowerCase(email),
       password,
       avatarColor,
       createdAt: new Date(),

@@ -28,7 +28,7 @@ class AuthService {
     const query = {
       $or: [
         { username: Helpers.firstLetterUppercase(username) },
-        { email: Helpers.lowercase(email) },
+        { email: Helpers.lowerCase(email) },
       ],
     };
 
@@ -47,7 +47,7 @@ class AuthService {
 
   public async getAuthUserByEmail(email: string): Promise<IAuthDocument> {
     const user: IAuthDocument = (await AuthModel.findOne({
-      email: Helpers.lowercase(email),
+      email: Helpers.lowerCase(email),
     }).exec()) as IAuthDocument;
     return user;
   }
