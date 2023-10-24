@@ -21,7 +21,7 @@ withCredentials: true
 
 {
   "conversationId": "",
-  "receiverId": "6500d4f335bfbe09d052e354",
+  "receiverId": "",
   "receiverUsername": "Drilll",
   "receiverAvatarColor": "black",
   "receiverProfilePicture": "https://res.cloudinary.com/doyg3ppyn/image/upload/v1694553332/6500d4f335bfbe09d052e354",
@@ -36,7 +36,7 @@ POST {{baseUrl}}/{{urlPath}}/chat/message/add-chat-users
 Content-Type: application/json
 Accept: application/json
 withCredentials: true
-
+# user one is the loged in user usertwo is the one you want to add to the chat
 {
   "userOne": "",
   "userTwo": ""
@@ -47,7 +47,7 @@ POST {{baseUrl}}/{{urlPath}}/chat/message/remove-chat-users
 Content-Type: application/json
 Accept: application/json
 withCredentials: true
-
+# user one is the loged in user usertwo is the one you want to add to the chat
 {
   "userOne": "",
   "userTwo": ""
