@@ -16,7 +16,7 @@ import { notificationTemplate } from '@service/emails/templates/notifications/no
 import { emailQueue } from '@service/queues/email.queue';
 import { UserCache } from '@service/redis/user.cache';
 import { socketIONotificationObject } from '@socket/notification';
-import { IUserDocument } from '@user/interfaces/user.interfaces';
+import { IUserDocument } from '@user/interfaces/user.interface';
 import { omit } from 'lodash';
 import mongoose from 'mongoose';
 const userCache: UserCache = new UserCache();

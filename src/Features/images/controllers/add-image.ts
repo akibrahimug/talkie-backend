@@ -6,7 +6,7 @@ import { addImageSchema } from '@image/schemes/images';
 import { uploads } from '@global/helpers/cloudinary-upload';
 import { UploadApiResponse } from 'cloudinary';
 import { BadRequestError } from '@global/helpers/error-handler';
-import { IUserDocument } from '@user/interfaces/user.interfaces';
+import { IUserDocument } from '@user/interfaces/user.interface';
 import { socketIOImageObject } from '@socket/image';
 import { imageQueue } from '@service/queues/image.queue';
 import { IBgUploadResponse } from '@image/interfaces/image.interfaces';

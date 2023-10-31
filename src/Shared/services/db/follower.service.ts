@@ -7,7 +7,7 @@ import {
   IFollowerDocument,
 } from '@follower/interfaces/followers.interfaces';
 import { IQueryDeleted, IQueryComplete } from '@post/interfaces/post.interface';
-import { IUserDocument } from '@user/interfaces/user.interfaces';
+import { IUserDocument } from '@user/interfaces/user.interface';
 import {
   INotificationDocument,
   INotificationTemplate,

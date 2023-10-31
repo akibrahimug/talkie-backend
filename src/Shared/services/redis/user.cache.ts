@@ -3,7 +3,7 @@ import {
   INotificationSettings,
   ISocialLinks,
   IUserDocument,
-} from '@user/interfaces/user.interfaces';
+} from '@user/interfaces/user.interface';
 import Logger from 'bunyan';
 import { indexOf, findIndex } from 'lodash';
 import { config } from '@root/config';
