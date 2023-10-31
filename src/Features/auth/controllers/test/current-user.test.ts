@@ -7,7 +7,7 @@ import {
 } from '@root/mocks/auth.mock';
 import { existingUser } from '@root/mocks/user.mock';
 import { UserCache } from '@service/redis/user.cache';
-import { IUserDocument } from '@user/interfaces/user.interfaces';
+import { IUserDocument } from '@user/interfaces/user.interface';
 
 jest.mock('@service/queues/base.queue');
 jest.mock('@service/redis/user.cache');

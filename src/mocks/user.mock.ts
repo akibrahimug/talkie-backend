@@ -1,4 +1,4 @@
-import { IUserDocument } from '@user/interfaces/user.interfaces';
+import { IUserDocument } from '@user/interfaces/user.interface';
 
 export const mockExistingUser = {
   notifications: {

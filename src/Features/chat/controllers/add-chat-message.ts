@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import HTTP_STATUS from 'http-status-codes';
 import { UserCache } from '@service/redis/user.cache';
-import { IUserDocument } from '@user/interfaces/user.interfaces';
+import { IUserDocument } from '@user/interfaces/user.interface';
 import { joiValidation } from '@global/decorators/joi-validation.decorator';
 import { addChatSchema } from '@chat/schemes/chat';
 import { ObjectId } from 'mongodb';
