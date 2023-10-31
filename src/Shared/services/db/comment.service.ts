@@ -9,7 +9,7 @@ import { IPostDocument } from '@post/interfaces/post.interface';
 import { PostModel } from '@post/models/post.schema';
 import mongoose, { Query } from 'mongoose';
 import { UserCache } from '@service/redis/user.cache';
-import { IUserDocument } from '@user/interfaces/user.interfaces';
+import { IUserDocument } from '@user/interfaces/user.interface';
 import { NotificationModel } from '@notification/models/notification.schema';
 import {
   INotificationDocument,
