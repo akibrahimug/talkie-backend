@@ -8,7 +8,7 @@ import { authService } from '@service/db/auth.service';
 import crypto from 'crypto';
 import { forgotPasswordTemplate } from '@service/emails/templates/forgotPassword/forgot-password-template';
 import { emailQueue } from '@service/queues/email.queue';
-import { IResetPasswordParams } from '@user/interfaces/user.interfaces';
+import { IResetPasswordParams } from '@user/interfaces/user.interface';
 import publicIP from 'ip';
 import moment from 'moment';
 import { resetPasswordTemplate } from '@service/emails/templates/resetPassword/reset-password-template';

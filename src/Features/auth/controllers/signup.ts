@@ -9,7 +9,7 @@ import { Helpers } from '@global/helpers/helpers';
 import { uploads } from '@global/helpers/cloudinary-upload';
 import { UploadApiResponse } from 'cloudinary';
 import HTTP_STATUS from 'http-status-codes';
-import { IUserDocument } from '@user/interfaces/user.interfaces';
+import { IUserDocument } from '@user/interfaces/user.interface';
 import { UserCache } from '@service/redis/user.cache';
 import { omit } from 'lodash';
 import { authQueue } from '@service/queues/auth.queue';

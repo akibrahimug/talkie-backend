@@ -10,7 +10,7 @@ import { IAuthDocument } from '@auth/interfaces/auth.interface';
 import {
   IResetPasswordParams,
   IUserDocument,
-} from '@user/interfaces/user.interfaces';
+} from '@user/interfaces/user.interface';
 import { userService } from '@service/db/user.service';
 import { forgotPasswordTemplate } from '@service/emails/templates/forgotPassword/forgot-password-template';
 import { emailQueue } from '@service/queues/email.queue';
