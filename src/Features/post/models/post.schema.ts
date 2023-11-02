@@ -11,6 +11,8 @@ const postSchema: Schema = new Schema({
   bgColor: { type: String, default: '' },
   imgVersion: { type: String, default: '' },
   imgId: { type: String, default: '' },
+  videoVersion: { type: String, default: '' },
+  videoId: { type: String, default: '' },
   feelings: { type: String, default: '' },
   gifUrl: { type: String, default: '' },
   privacy: { type: String, default: '' },
@@ -21,15 +23,11 @@ const postSchema: Schema = new Schema({
     happy: { type: Number, default: 0 },
     wow: { type: Number, default: 0 },
     sad: { type: Number, default: 0 },
-    angry: { type: Number, default: 0 },
+    angry: { type: Number, default: 0 }
   },
-  createdAt: { type: Date, default: Date.now },
+  createdAt: { type: Date, default: Date.now }
 });
 
-const PostModel: Model<IPostDocument> = model<IPostDocument>(
-  'Post',
-  postSchema,
-  'Post'
-);
+const PostModel: Model<IPostDocument> = model<IPostDocument>('Post', postSchema, 'Post');
 
 export { PostModel };

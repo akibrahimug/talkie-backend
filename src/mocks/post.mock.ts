@@ -85,6 +85,8 @@ export const updatedPost = {
   gifUrl: '',
   imgId: '',
   imgVersion: '',
+  videoId: '',
+  videoVersion: '',
 };
 
 export const updatedPostWithImage = {

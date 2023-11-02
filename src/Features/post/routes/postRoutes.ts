@@ -1,9 +1,9 @@
+import express, { Router } from 'express';
 import { authmiddleware } from '@global/helpers/auth.middleware';
 import { Create } from '@post/controllers/create-post';
+import { Get } from '@post/controllers/get-posts';
 import { Delete } from '@post/controllers/delete-post';
-import { Get } from '@post/controllers/get-post';
 import { Update } from '@post/controllers/update-post';
-import express, { Router } from 'express';
 
 class PostRoutes {
   private router: Router;
@@ -23,6 +23,12 @@ class PostRoutes {
       authmiddleware.checkAuthentication,
       Get.prototype.postsWithImages
     );
+    this.router.get(
+      '/post/videos/:page',
+      authmiddleware.checkAuthentication,
+      Get.prototype.postsWithVideos
+    );
+
     this.router.post(
       '/post',
       authmiddleware.checkAuthentication,
@@ -33,6 +39,12 @@ class PostRoutes {
       authmiddleware.checkAuthentication,
       Create.prototype.postWithImage
     );
+    this.router.post(
+      '/post/video/post',
+      authmiddleware.checkAuthentication,
+      Create.prototype.postWithVideo
+    );
+
     this.router.put(
       '/post/:postId',
       authmiddleware.checkAuthentication,
@@ -43,6 +55,12 @@ class PostRoutes {
       authmiddleware.checkAuthentication,
       Update.prototype.postWithImage
     );
+    this.router.put(
+      '/post/video/:postId',
+      authmiddleware.checkAuthentication,
+      Update.prototype.postWithVideo
+    );
+
     this.router.delete(
       '/post/:postId',
       authmiddleware.checkAuthentication,
