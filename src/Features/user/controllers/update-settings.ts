@@ -19,11 +19,9 @@ export class UpdateSettings {
       key: `${req.currentUser!.userId}`,
       value: req.body,
     });
-    res
-      .status(HTTP_STATUS.OK)
-      .json({
-        message: 'Notification settings updated successfully',
-        settings: req.body,
-      });
+    res.status(HTTP_STATUS.OK).json({
+      message: 'Notification settings updated successfully',
+      settings: req.body,
+    });
   }
 }
