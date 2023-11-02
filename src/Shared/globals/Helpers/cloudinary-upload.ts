@@ -43,6 +43,7 @@ export function videoUpload(
         public_id,
         overwrite,
         invalidate,
+        max_bytes: 52428800,
       },
       (
         error: UploadApiErrorResponse | undefined,
