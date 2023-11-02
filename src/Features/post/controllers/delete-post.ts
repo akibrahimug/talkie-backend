@@ -1,8 +1,8 @@
-import { postQueue } from '@service/queues/post.queue';
-import { PostCache } from '@service/redis/post.cache';
-import { socketIOPostObject } from '@socket/post.socket';
 import { Request, Response } from 'express';
-import HTTP_SERVER from 'http-status-codes';
+import { PostCache } from '@service/redis/post.cache';
+import HTTP_STATUS from 'http-status-codes';
+import { postQueue } from '@service/queues/post.queue';
+import { socketIOPostObject } from '@socket/post.socket';
 
 const postCache: PostCache = new PostCache();
 
@@ -15,8 +15,8 @@ export class Delete {
     );
     postQueue.addPostJob('deletePostFromDB', {
       keyOne: req.params.postId,
-      keyTwo: req.currentUser?.userId,
+      keyTwo: req.currentUser!.userId,
     });
-    res.status(HTTP_SERVER.OK).json({ message: 'Post deleted successfully' });
+    res.status(HTTP_STATUS.OK).json({ message: 'Post deleted successfully' });
   }
 }
