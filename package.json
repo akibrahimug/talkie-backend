@@ -1,16 +1,21 @@
 {
-  "name": "talky-backend",
+  "name": "talkie-backend",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
   "scripts": {
+    "start": "NODE_ENV=production pm2 start ./build/src/app.js -i 5 --attach --watch | ./node_modules/.bin/bunyan",
+    "stop": "pm2 stop all",
+    "delete": "pm2 delete all",
     "test": "jest --coverage=true -w=1 --forceExit --detectOpenHandles --watchAll=true",
     "dev": "nodemon --exec ts-node -r tsconfig-paths/register src/app.ts | ./node_modules/.bin/bunyan",
     "lint:check": "eslint 'src/**/*.ts'",
     "lint:fix": "eslint --fix 'src/**/*.ts'",
     "prettier:check": "prettier --check 'src/**/*.{ts,json,md}'",
     "prettier:fix": "prettier --write 'src/**/*.{ts,json,md}'",
-    "build": "ttsc -p ."
+    "build": "ttsc -p .",
+    "seed:dev": "npx ts-node src/seeds.ts",
+    "seed:prod": "npx ts-node ./build/src/seeds.js"
   },
   "keywords": [],
   "author": "",
@@ -18,7 +23,7 @@
   "dependencies": {
     "@bull-board/express": "^5.5.1",
     "@bull-board/ui": "^5.6.0",
-    "@faker-js/faker": "^8.0.2",
+    "@faker-js/faker": "6.3.1",
     "@jest/types": "^29.5.0",
     "@sendgrid/mail": "^7.7.0",
     "@socket.io/redis-adapter": "^8.2.1",
@@ -72,6 +77,7 @@
     "@types/lodash": "^4.14.195",
     "@types/node": "^18.11.18",
     "@types/nodemailer": "^6.4.8",
+    "@types/redis-info": "^3.0.2",
     "@types/swagger-stats": "^0.95.8",
     "@typescript-eslint/eslint-plugin": "^5.60.0",
     "@typescript-eslint/parser": "^5.60.0",

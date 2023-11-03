@@ -18,6 +18,7 @@ import helmet from 'helmet';
 import hpp from 'hpp';
 import cookieSession from 'cookie-session';
 import HTTP_STATUS from 'http-status-codes';
+import apiStates from 'swagger-stats';
 import 'express-async-errors';
 import compression from 'compression';
 import { config } from '@root/config';
@@ -49,6 +50,7 @@ export class TalkyServer {
     this.securityMiddleware(this.app);
     this.standardMiddleware(this.app);
     this.routesMiddleware(this.app);
+    this.apiMonitoring(this.app);
     this.globalErrorHanler(this.app);
     this.startServer(this.app);
   }
@@ -74,6 +76,14 @@ export class TalkyServer {
         // For older browsers but just to be safe
         optionsSuccessStatus: 200,
         methods: ['GET,HEAD,PUT,PATCH,POST,DELETE'],
+      })
+    );
+  }
+
+  private apiMonitoring(app: Application): void {
+    app.use(
+      apiStates.getMiddleware({
+        uriPath: '/api-monitoring',
       })
     );
   }
@@ -107,6 +117,9 @@ export class TalkyServer {
     );
   }
   private async startServer(app: Application): Promise<void> {
+    if (!config.JWT_TOKEN) {
+      throw new Error('JWT_TOKEN must be provided');
+    }
     try {
       const httpServer: http.Server = new http.Server(app);
       const socketIO: Server = await this.createSocketIO(httpServer);
@@ -147,6 +160,8 @@ export class TalkyServer {
   }
 
   private startHttpServer(httpServer: http.Server): void {
+    log.info(`Worker has started with id of ${process.pid}`);
+    log.info(`Server has started with process ${process.pid}`);
     httpServer.listen(SERVER_PORT, () => {
       // Dont use console.log in production
       // use a logger library
