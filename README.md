@@ -10,8 +10,10 @@
 - GitHub => Code hosting
 - AWS => Cloud computing platform
 - Banyan => For logging errors in production
-
-//App Features
+- Cloudinary => For deploying images
+- Ethereal => Email brocker
+- PM2 => Node Process Manager
+  //App Features
 
 - Authentication => Using Cookies (JWT)
   Signup
@@ -62,6 +64,6 @@
 - Notification
   Notification settings
   Retrive and Display notifications
-  Delete and update notification
+  Delete and update notifications
 
 The app is set up in a way that in future we can use it as a microservice

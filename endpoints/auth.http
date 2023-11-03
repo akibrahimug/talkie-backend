@@ -1,0 +1,80 @@
+@baseUrl = http://localhost:5000
+@urlPath = api/v1
+
+###
+POST {{baseUrl}}/{{urlPath}}/signup
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+{
+  "username": "drilll",
+  "password": "qwerty",
+  "email": "drilll@test.com",
+  "avatarColor": "black",
+  "avatarImage": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAMAAACahl6sAAAArlBMVEUAAAA8G5c7G5gcDEw8G5ceDUwPBiZaKeRaKORaKORaKeRaKORaKORaJ+NLIr4vFHksE24tFHEdDUsXCToOBiUMBR9aKeRPJMpEHrBKIL0uFHYdDEoVCTZaKeNaKONPJMpZJ+JMIr5LIr5LIb47G5g8G5dEH6s+GZYvFXgqEmtaKONaKeRFH7FRJMlbJ+NLIb5EHqtJIL1GH7E9GpdDHqpDHqsnEmUdDUsvEnBaKeSDlqn2AAAAOXRSTlMAf5QKalUH/Pn38OvVyLBJNE4kFxQO9MeUgV4eG9zPz7yWkYqGd2dWUzzfv7evp6F/em9sa0tKOCquZeyjAAACEklEQVR42u3cR1LrUBSE4fNkni0r2AYnMDnDy4HU+98YVRTMZEvXoz6H/nbwV0nqW3cgExEREREREREREREREfl0Vn2LoPcLPQtgXCFEyCUQIWRSI0TIbo4IIdPzHAFC+v9LIELINRAj5ItCyCiEjULY+A6Zn8cI6dcIEXL/DSFCJkOECFkVCBFyAUQIORwhRMjRMUKE3JYIEXI1QISQ+RkQIeRliRAh4yEihPSvFwgR8huIELJXI0TIuECIkJscIUL2gQghsxOECJlUCBFyB0QI6R3kMUJGQISQ2U+ECLktECLkDxAiZPq1yQ9/Ic0yhZBRCBuFsFEIG4WwUQgbhbBRCBuFsFEIG4WwUQgbhbBRCBuFsFEIG4WwUQgbhbBRCBuFsGkN+bfTZGpsWkKaDR6MzjYh5dj4bBFS8T1XW4Usj4xRasjwgPQfPIkhg10jlRZSTYxVUsjJzGilhOwbse4h+Y0x6xxSMK7gFiHDe+PWMWS5Z+SaQ7ysYGuIlxVMCznlXcGkkJp4BVtDvKxgQsiFObE5pNgxLzaG1PTr0S1kZI6sD1n85V/B1hAvK9ghpLwzX9aEHHNelSSHjA7Nm8YQR1/d5hDPFMJGIWwUwuYtxOFhd0PIpbn2EVKuzLf3kFN/h6vGkO9z8y4DMLgy/zJg8WgBZKieLYLszNUVw3pP/l9zERERERERERERERERkVSvLGxdq2InYCgAAAAASUVORK5CYII="
+}
+
+
+
+###
+POST {{baseUrl}}/{{urlPath}}/signup
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+{
+  "username": "User 3",
+  "password": "qwerty",
+  "email": "user3@test.com",
+  "avatarColor": "pink",
+  "avatarImage": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAMAAACahl6sAAAArlBMVEUAAAA8G5c7G5gcDEw8G5ceDUwPBiZaKeRaKORaKORaKeRaKORaKORaJ+NLIr4vFHksE24tFHEdDUsXCToOBiUMBR9aKeRPJMpEHrBKIL0uFHYdDEoVCTZaKeNaKONPJMpZJ+JMIr5LIr5LIb47G5g8G5dEH6s+GZYvFXgqEmtaKONaKeRFH7FRJMlbJ+NLIb5EHqtJIL1GH7E9GpdDHqpDHqsnEmUdDUsvEnBaKeSDlqn2AAAAOXRSTlMAf5QKalUH/Pn38OvVyLBJNE4kFxQO9MeUgV4eG9zPz7yWkYqGd2dWUzzfv7evp6F/em9sa0tKOCquZeyjAAACEklEQVR42u3cR1LrUBSE4fNkni0r2AYnMDnDy4HU+98YVRTMZEvXoz6H/nbwV0nqW3cgExEREREREREREREREfl0Vn2LoPcLPQtgXCFEyCUQIWRSI0TIbo4IIdPzHAFC+v9LIELINRAj5ItCyCiEjULY+A6Zn8cI6dcIEXL/DSFCJkOECFkVCBFyAUQIORwhRMjRMUKE3JYIEXI1QISQ+RkQIeRliRAh4yEihPSvFwgR8huIELJXI0TIuECIkJscIUL2gQghsxOECJlUCBFyB0QI6R3kMUJGQISQ2U+ECLktECLkDxAiZPq1yQ9/Ic0yhZBRCBuFsFEIG4WwUQgbhbBRCBuFsFEIG4WwUQgbhbBRCBuFsFEIG4WwUQgbhbBRCBuFsGkN+bfTZGpsWkKaDR6MzjYh5dj4bBFS8T1XW4Usj4xRasjwgPQfPIkhg10jlRZSTYxVUsjJzGilhOwbse4h+Y0x6xxSMK7gFiHDe+PWMWS5Z+SaQ7ysYGuIlxVMCznlXcGkkJp4BVtDvKxgQsiFObE5pNgxLzaG1PTr0S1kZI6sD1n85V/B1hAvK9ghpLwzX9aEHHNelSSHjA7Nm8YQR1/d5hDPFMJGIWwUwuYtxOFhd0PIpbn2EVKuzLf3kFN/h6vGkO9z8y4DMLgy/zJg8WgBZKieLYLszNUVw3pP/l9zERERERERERERERERkVSvLGxdq2InYCgAAAAASUVORK5CYII="
+}
+
+###
+POST {{baseUrl}}/{{urlPath}}/signin
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+{
+  "username": "drilll",
+  "password": "qwerty"
+}
+
+
+###
+GET  {{baseUrl}}/{{urlPath}}/signout
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+
+###
+GET  {{baseUrl}}/{{urlPath}}/currentuser
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+
+###
+POST {{baseUrl}}/{{urlPath}}/forgot-password
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+{
+  "email": "drilll@test.com"
+}
+
+
+###
+POST {{baseUrl}}/{{urlPath}}/reset-password/993749978b2c881aa717dccc7e635ff95bdd33be
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+{
+  "password": "akibra",
+  "confirmPassword": "akibra"
+}
