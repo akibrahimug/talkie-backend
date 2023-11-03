@@ -12,8 +12,8 @@
 - Banyan => For logging errors in production
 - Cloudinary => For deploying images
 - Ethereal => Email brocker
-
-//App Features
+- PM2 => Node Process Manager
+  //App Features
 
 - Authentication => Using Cookies (JWT)
   Signup
