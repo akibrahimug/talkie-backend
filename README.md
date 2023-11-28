@@ -9,10 +9,14 @@
 - Git => Version Control
 - GitHub => Code hosting
 - AWS => Cloud computing platform
+  -- Compute - EC2 - Elastic Load Balancing
+  -- Storage - S3 - CloudFront - Elastic Block Storage
+  -- Developer - CodeDeploy
 - Banyan => For logging errors in production
 - Cloudinary => For deploying images
 - Ethereal => Email brocker
 - PM2 => Node Process Manager
+
   //App Features
 
 - Authentication => Using Cookies (JWT)
