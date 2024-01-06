@@ -67,3 +67,44 @@
   Delete and update notifications
 
 The app is set up in a way that in future we can use it as a microservice
+
+AWS SERVICES USED
+
+- Virtual Private Cloud (VPC)
+  It separates the public cloud(aws) to have a private cloud.
+- Subnet
+  Allows us to manage internet traffic into our instances
+  IP addresses that we can use
+- Internet GateWay
+  Allows internet into our VPC
+- Route Table
+  Allow traffic within the VPC
+  - Traffic through instances launched from either the private/public subnet
+- Elastic IP
+  Used with NAT Gateways
+  Assign to EC2 instances
+- NAT Gateways
+  Launched from the public subnets giving access to the private subnets
+- Bastion Host
+  Allow admin access from the public subnet into the EC2/ElastiCache in the private subnet
+- Security groups
+  Firewalls for instances
+- Application Load Balancers (ALB)
+  Used with the Route 53
+  Balance the traffic entering into our servers
+- Route 53
+  Use the nameserves to connect to external domains
+- AWS Certificate Manager(ACM)
+  Allow the app to only use https
+- Auto Scaling Groups (ASG)
+  Allows us to scale up or down the instances
+- Elastic Compute Cloud (EC2)
+  Computer on which the serve is running on in the cloud
+- Elasticache
+  We are using this to store the redis data
+- IAM Roles and Policies
+  Access temporaliy
+- Simple Storage Service(s3)
+  For storage
+- CodeDeploy
+  If we update our code base in GH this will help keep the app upto date
