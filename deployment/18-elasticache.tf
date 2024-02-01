@@ -9,7 +9,7 @@ resource "aws_elasticache_replication_group" "talkieapp_redis_cluster" {
   node_type                     = var.elasticache_node_type
   replication_group_description = "Redis elasticache replication group"
   number_cache_clusters         = 2
-  # parameter_group_name          = var.elasticache_parameter_group_name
+  parameter_group_name          = var.elasticache_parameter_group_name
   port                          = 6379
   multi_az_enabled              = true
   subnet_group_name             = aws_elasticache_subnet_group.elasticache_subnet_group.name

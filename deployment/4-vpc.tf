@@ -6,5 +6,4 @@ resource "aws_vpc" "main" {
     local.common_tags,
     tomap({ "Name" = "${local.prefix}" })
   )
-
 }

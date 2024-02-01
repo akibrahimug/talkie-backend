@@ -1,6 +1,8 @@
 #!/bin/bash
 
 aws s3 sync s3://talkieapp-env-files/develop .
+# to update and upload the env file to s3
+  # zip env-file.zip .env.develop from the root
 unzip env-file.zip
 cp .env.develop .env
 rm .env.develop

@@ -37,7 +37,7 @@ variable "global_destination_cidr_block" {
 variable "bastion_host_cidr" {
   description = "CIDR Block for Bastion Host Ingress"
   type        = string
-  default     = "192.168.0.10"
+  default     = "82.0.142.201"
 }
 
 variable "https_ssl_policy" {
@@ -85,7 +85,7 @@ variable "elasticache_node_type" {
 variable "elasticache_parameter_group_name" {
   description = "Elasticache Parameter Group Name"
   type        = string
-  default     = "default.redis6.x"
+  default     = "default.redis7"
 }
 
 variable "ec2_instance_type" {

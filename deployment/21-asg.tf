@@ -3,9 +3,9 @@ resource "aws_autoscaling_group" "ec2_autoscaling_group" {
   vpc_zone_identifier       = [aws_subnet.private_subnet_a.id, aws_subnet.private_subnet_b.id]
   max_size                  = 1
   min_size                  = 1
-  health_check_type         = "ELB"
   desired_capacity          = 1
-  launch_configuration      = aws_launch_configuration.aws_launch_configuration.name
+  launch_configuration      = aws_launch_configuration.asg_launch_configuration.name
+  health_check_type         = "ELB"
   health_check_grace_period = 600
   default_cooldown          = 150
   force_delete              = true

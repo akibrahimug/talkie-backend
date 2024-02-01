@@ -11,8 +11,20 @@ sudo yum update -y
 
 #check if node is installed if not install it
 if[$(program_is_installed node) == 0]; then
-curl -fsSL https://rpm.nodesource.com/setup_lts.x | sudo bash -
-sudo yum install -y nodejs
+### download the NodeJS binary (x86 only)
+wget -nv https://d3rnber7ry90et.cloudfront.net/linux-x86_64/node-v18.17.1.tar.gz
+
+sudo mkdir /usr/local/lib/node
+tar -xf node-v18.17.1.tar.gz
+sudo mv node-v18.17.1 /usr/local/lib/node/nodejs
+### Unload NVM, use the new node in the path, then install some items globally.
+echo "export NVM_DIR=''" >> /home/ec2-user/.bashrc
+echo "export NODEJS_HOME=/usr/local/lib/node/nodejs" >> /home/ec2-user/.bashrc
+echo "export PATH=\$NODEJS_HOME/bin:\$PATH" >> /home/ec2-user/.bashrc
+### Reload environment
+. /home/ec2-user/.bashrc
+### Verify NodeJS v18.x is operating
+node -e "console.log('Running Node.js ' + process.version)"
 fi
 
 if[$(program_is_installed git) == 0]; then
@@ -26,16 +38,16 @@ sudo docker run --name talkieapp-redis -p 6379:6379 --restart always --detach re
 fi
 
 if[$(program_is_installed pm2) == 0]; then
-npm install -g pm2
+yarn add -g pm2
 fi
 
 cd /home/ec2-user
 
 git clone -b develop https://github.com/akibrahimug/talkie-backend.git
 cd talkie-backend
-npm install
+yarn
 aws s3 sync s3://talkieapp-env-files/develop .
 unzip env-file.zip
 cp .env.develop .env
-npm run build
-npm run start
+yarn build
+yarn start
