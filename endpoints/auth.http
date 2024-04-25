@@ -1,4 +1,4 @@
-@baseUrl = https://api.dev.talkieappserver.xyz/
+@baseUrl = https://api.dev.talkieappserver.xyz
 @urlPath = api/v1
 
 ###
