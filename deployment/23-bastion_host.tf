@@ -4,11 +4,13 @@ resource "aws_instance" "bastion_host" {
   vpc_security_group_ids      = [aws_security_group.bastion_host_sg.id]
   subnet_id                   = aws_subnet.public_subnet_a.id
   key_name                    = "talkieappKeyPair"
-  associate_public_ip_address = true
+  associate_public_ip_address = false
   tags = merge(
     local.common_tags,
     tomap({ "Name" = "${local.prefix}-bastion-host" })
   )
+
+  monitoring = true
 }
 
 

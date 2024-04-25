@@ -30,9 +30,7 @@ class HealthRoutes {
     this.router.get('/env', (req: Request, res: Response) => {
       res
         .status(HTTP_STATUS.OK)
-        .send(
-          `This is the ${config.NODE_ENV} environment.rfrgrg5t3e2e3e3r4g5g`
-        );
+        .send(`This is the ${config.NODE_ENV} environment.`);
     });
 
     return this.router;

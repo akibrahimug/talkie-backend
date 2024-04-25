@@ -1,0 +1,48 @@
+# version: "3.8"
+
+# services:
+#   app:
+#     container_name: talkie-backend
+#     build:
+#       context: .
+#       dockerfile: Dockerfile
+#     ports:
+#       - "5000:5000"
+#     volumes:
+#       - .:/usr/src/app
+#       - /usr/src/app/node_modules
+#     environment:
+#       - NODE_ENV=production
+#       - REDIS_HOST=redis://redis:6379
+#       - DATABASE_URL=mongodb://mongo:27017/talkie-backend
+#     depends_on:
+#       - redis
+#       - mongo
+#     networks:
+#       - app-network
+
+#   redis:
+#     container_name: app-redis
+#     image: redis:latest
+#     ports:
+#       - "6379:6379"
+#     networks:
+#       - app-network
+
+#   mongo:
+#     container_name: app-mongo
+#     image: mongo:latest
+#     ports:
+#       - "27017:27017"
+#     volumes:
+#       - mongo-data:/data/db
+#     networks:
+#       - app-network
+
+# networks:
+#   app-network:
+#     driver: bridge
+
+# volumes:
+#   mongo-data:
+#     driver: local
