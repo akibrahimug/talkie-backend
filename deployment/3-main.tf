@@ -1,6 +1,6 @@
 terraform {
   backend "s3" {
-    bucket  = "talkie-app-terraform-state"
+    bucket  = "talkieappserver-terraform-state"
     key     = "develop/talkieapp.tfstate"
     region  = "us-east-1"
     encrypt = true

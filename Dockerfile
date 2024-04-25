@@ -18,7 +18,7 @@ RUN yarn global add pm2
 COPY . .
 
 # Compile TypeScript to JavaScript
-RUN yarn build
+RUN yarn build && echo "Listing build directory:" && ls -l /usr/src/app/build/src
 
 # Make port 5000 available to the world outside this container
 EXPOSE 5000
