@@ -56,5 +56,5 @@ aws s3 sync s3://talkieapp-env-files/develop .
 unzip env-file.zip
 cp .env.develop .env
 yarn build
-yarn start --max-old-space-size=4096
+yarn start
 
