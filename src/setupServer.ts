@@ -2,7 +2,7 @@ import {
   CustomError,
   IError,
   IErrorResponse,
-} from "./Shared/globals/Helpers/error-handler";
+} from '@global/helpers/error-handler';
 import {
   Application,
   json,
@@ -18,37 +18,27 @@ import helmet from 'helmet';
 import hpp from 'hpp';
 import cookieSession from 'cookie-session';
 import HTTP_STATUS from 'http-status-codes';
+import apiStates from 'swagger-stats';
 import 'express-async-errors';
-// compression library helps compress the data from the server (response)
-<<<<<<< HEAD
 import compression from 'compression';
-import { config } from './config';
+import { config } from '@root/config';
 import { Server } from 'socket.io';
 import { createClient } from 'redis';
 import { createAdapter } from '@socket.io/redis-adapter';
 import Logger from 'bunyan';
-=======
-import compression from "compression";
-import { config } from "./config";
-import { Server } from "socket.io";
-import { createClient } from "redis";
-import { createAdapter } from "@socket.io/redis-adapter";
-import applicationRoutes from "./routes";
-import Logger from "bunyan";
->>>>>>> 38620003d91b652f55dba3bfff93bebd13179c58
+import applicationRoutes from '@root/routes';
+import { SocketIoPostHandler } from '@socket/post.socket';
+import { SocketIoFollowerHandler } from '@socket/follower.socket';
+import { SocketIoUserHandler } from '@socket/user.socket';
+import { SocketIONotificationHandler } from '@socket/notification';
+import { SocketIOImageHandler } from '@socket/image';
+import { SocketIOChatHandler } from '@socket/chat';
 
 // use this port number for development
 //and we will use it in AWS for load balancing and security groups
 const SERVER_PORT = process.env.PORT || 5000;
-<<<<<<< HEAD
-
-// create a logger instance
-const logger: Logger = config.createLogger('talkie-server');
-
-=======
-const log: Logger = config.createLogger("server");
->>>>>>> 38620003d91b652f55dba3bfff93bebd13179c58
-export class TalkieServer {
+const log: Logger = config.createLogger('server');
+export class TalkyServer {
   // express instance
   private app: Application;
   //   use the express instance to create the app
@@ -60,6 +50,7 @@ export class TalkieServer {
     this.securityMiddleware(this.app);
     this.standardMiddleware(this.app);
     this.routesMiddleware(this.app);
+    this.apiMonitoring(this.app);
     this.globalErrorHanler(this.app);
     this.startServer(this.app);
   }
@@ -89,6 +80,15 @@ export class TalkieServer {
     );
   }
 
+  // moniter the api using swagger-stats in the browser
+  private apiMonitoring(app: Application): void {
+    app.use(
+      apiStates.getMiddleware({
+        uriPath: '/api-monitoring',
+      })
+    );
+  }
+
   // manage all the routes
   private routesMiddleware(app: Application): void {
     applicationRoutes(app);
@@ -96,7 +96,7 @@ export class TalkieServer {
   //   catch all errors
   private globalErrorHanler(app: Application): void {
     // catch all route errors
-    app.all("*", (req: Request, res: Response) => {
+    app.all('*', (req: Request, res: Response) => {
       res.status(HTTP_STATUS.NOT_FOUND).json({
         status: HTTP_STATUS.NOT_FOUND,
         message: `${req.originalUrl} not found`,
@@ -118,17 +118,16 @@ export class TalkieServer {
     );
   }
   private async startServer(app: Application): Promise<void> {
+    if (!config.JWT_TOKEN) {
+      throw new Error('JWT_TOKEN must be provided');
+    }
     try {
       const httpServer: http.Server = new http.Server(app);
       const socketIO: Server = await this.createSocketIO(httpServer);
       this.startHttpServer(httpServer);
       this.socketIOCOnnections(socketIO);
     } catch (e) {
-<<<<<<< HEAD
-      logger.error(e);
-=======
       log.error(e);
->>>>>>> 38620003d91b652f55dba3bfff93bebd13179c58
     }
   }
 
@@ -162,16 +161,30 @@ export class TalkieServer {
   }
 
   private startHttpServer(httpServer: http.Server): void {
+    log.info(`Worker has started with id of ${process.pid}`);
+    log.info(`Server has started with process ${process.pid}`);
     httpServer.listen(SERVER_PORT, () => {
       // Dont use console.log in production
       // use a logger library
-<<<<<<< HEAD
-      logger.info(`Server started on port ${SERVER_PORT}`);
-=======
       log.info(`Server started on port ${SERVER_PORT}`);
->>>>>>> 38620003d91b652f55dba3bfff93bebd13179c58
     });
   }
 
-  private socketIOCOnnections(io: Server): void {}
+  private socketIOCOnnections(io: Server): void {
+    const postSocketHandler: SocketIoPostHandler = new SocketIoPostHandler(io);
+    const followerSocketHandler: SocketIoFollowerHandler =
+      new SocketIoFollowerHandler(io);
+    const userSocketHandler: SocketIoUserHandler = new SocketIoUserHandler(io);
+    const chatSocketHandler: SocketIOChatHandler = new SocketIOChatHandler(io);
+    const notificationSocketHandler: SocketIONotificationHandler =
+      new SocketIONotificationHandler();
+    const ImageSocketHandler: SocketIOImageHandler = new SocketIOImageHandler();
+
+    postSocketHandler.listen();
+    followerSocketHandler.listen();
+    userSocketHandler.listen();
+    notificationSocketHandler.listen(io);
+    ImageSocketHandler.listen(io);
+    chatSocketHandler.listen();
+  }
 }
