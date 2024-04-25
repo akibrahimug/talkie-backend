@@ -97,7 +97,7 @@ variable "ec2_instance_type" {
 variable "bastion_host_type" {
   description = "Bastion Instance Type"
   type        = string
-  default     = "t4g.nano"
+  default     = "t2.nano"
 }
 
 variable "code_deploy_role_name" {

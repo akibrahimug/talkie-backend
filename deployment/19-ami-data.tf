@@ -15,6 +15,6 @@ data "aws_ami" "ec2_ami" {
   }
   filter {
     name   = "architecture"
-    values = ["arm64"]
+    values = ["x86_64"]
   }
 }
