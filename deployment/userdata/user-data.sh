@@ -52,7 +52,7 @@ cd /home/ec2-user
 git clone -b develop https://github.com/akibrahimug/talkie-backend.git
 cd talkie-backend
 yarn
-aws s3 sync s3://talkieapp-env-files/develop .
+aws s3 sync s3://talkieappserver-env-files/develop .
 unzip env-file.zip
 cp .env.develop .env
 yarn build
