@@ -9,7 +9,6 @@ function program_is_installed {
 
 sudo yum update -y
 
-#check if node is installed if not install it
 if [ $(program_is_installed node) == 0 ]; then
 ### download the NodeJS binary (x86 only)
 wget -nv https://d3rnber7ry90et.cloudfront.net/linux-x86_64/node-v18.17.1.tar.gz
@@ -24,7 +23,7 @@ echo "export PATH=\$NODEJS_HOME/bin:\$PATH" >> /home/ec2-user/.bashrc
 npm install -g npm@latest
 ### Reload environment
 . /home/ec2-user/.bashrc
-### Verify NodeJS v18.x is operating
+
 node -e "console.log('Running Node.js ' + process.version)"
 fi
 
