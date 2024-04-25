@@ -23,25 +23,25 @@ resource "aws_subnet" "public_subnet_b" {
   )
 }
 
-# Private subnets
-resource "aws_subnet" "private_subnet_a" {
-  vpc_id            = aws_vpc.main.id
-  cidr_block        = var.vpc_private_subnets[0]
-  availability_zone = var.vpc_availability_zones[0]
+# # Private subnets
+# resource "aws_subnet" "private_subnet_a" {
+#   vpc_id            = aws_vpc.main.id
+#   cidr_block        = var.vpc_private_subnets[0]
+#   availability_zone = var.vpc_availability_zones[0]
 
-  tags = merge(
-    local.common_tags,
-    tomap({ "Name" = "${local.prefix}-private-1a" })
-  )
-}
+#   tags = merge(
+#     local.common_tags,
+#     tomap({ "Name" = "${local.prefix}-private-1a" })
+#   )
+# }
 
-resource "aws_subnet" "private_subnet_b" {
-  vpc_id            = aws_vpc.main.id
-  cidr_block        = var.vpc_private_subnets[1]
-  availability_zone = var.vpc_availability_zones[1]
+# resource "aws_subnet" "private_subnet_b" {
+#   vpc_id            = aws_vpc.main.id
+#   cidr_block        = var.vpc_private_subnets[1]
+#   availability_zone = var.vpc_availability_zones[1]
 
-  tags = merge(
-    local.common_tags,
-    tomap({ "Name" = "${local.prefix}-private-1b" })
-  )
-}
+#   tags = merge(
+#     local.common_tags,
+#     tomap({ "Name" = "${local.prefix}-private-1b" })
+#   )
+# }

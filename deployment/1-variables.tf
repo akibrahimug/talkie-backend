@@ -1,7 +1,7 @@
 variable "aws_region" {
   description = "Region in which AWS resources are created"
   type        = string
-  default     = "us-east-1 "
+  default     = "us-east-1"
 }
 
 variable "vpc_cidr_block" {
@@ -79,7 +79,7 @@ variable "ec2_instance_profile_name" {
 variable "elasticache_node_type" {
   description = "Elasticache Node Type"
   type        = string
-  default     = "cache.t2.micro"
+  default     = "cache.t4g.micro"
 }
 
 variable "elasticache_parameter_group_name" {
@@ -91,13 +91,13 @@ variable "elasticache_parameter_group_name" {
 variable "ec2_instance_type" {
   description = "EC2 Instance Type"
   type        = string
-  default     = "t2.medium"
+  default     = "t3a.small"
 }
 
 variable "bastion_host_type" {
   description = "Bastion Instance Type"
   type        = string
-  default     = "t2.micro"
+  default     = "t4g.nano"
 }
 
 variable "code_deploy_role_name" {
