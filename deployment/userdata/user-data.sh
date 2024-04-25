@@ -31,6 +31,10 @@ if [ $(program_is_installed git) == 0 ]; then
 sudo yum install git -y
 fi
 
+if [ $(program_is_installed mongodb) == 0 ]; then
+npm install mongodb
+fi
+
 if [ $(program_is_installed yarn) == 0 ]; then
 echo "installing YARN !!!!! "
 npm install --global yarn

@@ -80,6 +80,7 @@ export class TalkyServer {
     );
   }
 
+  // moniter the api using swagger-stats in the browser
   private apiMonitoring(app: Application): void {
     app.use(
       apiStates.getMiddleware({

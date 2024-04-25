@@ -1,4 +1,15 @@
 #!/bin/bash
+function program_is_installed {
+  local return_=1
+
+  type $1 >/dev/null 2>&1 || { local return_=0; }
+  echo "$return_"
+}
+
+if [ $(program_is_installed zip) == 0 ]; then
+  apk update
+  apk add zip
+fi
 
 aws s3 sync s3://talkieappserver-env-files/develop .
 # to update and upload the env file to s3
