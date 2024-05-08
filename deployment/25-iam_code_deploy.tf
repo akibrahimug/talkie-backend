@@ -7,7 +7,7 @@ resource "aws_iam_role" "code_deploy_iam_role" {
         Action = "sts:AssumeRole"
         Effect = "Allow"
         Principal = {
-          Service = "codedeploy.amazonaws.com"
+          Service = ["codedeploy.amazonaws.com"]
         }
       }
     ]
@@ -18,3 +18,4 @@ resource "aws_iam_role_policy_attachment" "AWSCodeDeployRole" {
   policy_arn = "arn:aws:iam::aws:policy/service-role/AWSCodeDeployRole"
   role       = aws_iam_role.code_deploy_iam_role.name
 }
+

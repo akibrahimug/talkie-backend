@@ -47,7 +47,9 @@ class HealthRoutes {
         .send(
           `Server is running on EC2 instance with id ${
             response.data
-          } and process id ${process.pid} on ${moment().format('LL')}`
+          } and process id ${process.pid} on -----------> ${moment().format(
+            'LL'
+          )}`
         );
     });
 
