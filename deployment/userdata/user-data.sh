@@ -31,8 +31,6 @@ sudo mv node-v18.17.1 /usr/local/lib/node/nodejs
 echo "export NVM_DIR=''" >> /home/ec2-user/.bashrc
 echo "export NODEJS_HOME=/usr/local/lib/node/nodejs" >> /home/ec2-user/.bashrc
 echo "export PATH=\$NODEJS_HOME/bin:\$PATH" >> /home/ec2-user/.bashrc
-# echo "installing NPM >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
-# npm install -g npm@latest
 ### Reload environment
 . /home/ec2-user/.bashrc
 
@@ -44,9 +42,15 @@ echo "installing GIT >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> "
 sudo yum install git -y
 fi
 
+cd /home/ec2-user
+
+git clone -b develop https://github.com/akibrahimug/talkie-backend.git
+cd talkie-backend
+echo "installing NPM >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
+npm install -g npm@latest
 if [ $(program_is_installed yarn) == 0 ]; then
 echo "installing YARN >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> "
-npx install --global yarn
+npm install --global yarn
 fi
 
 if [ $(program_is_installed docker) == 0 ]; then
@@ -65,11 +69,6 @@ if [ $(program_is_installed pm2) == 0 ]; then
 echo "installing PM2 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
 yarn global add pm2
 fi
-
-cd /home/ec2-user
-
-git clone -b develop https://github.com/akibrahimug/talkie-backend.git
-cd talkie-backend
 yarn
 aws s3 sync s3://talkieappserver-env-files/develop .
 unzip env-file.zip
