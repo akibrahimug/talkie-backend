@@ -31,8 +31,8 @@ sudo mv node-v18.17.1 /usr/local/lib/node/nodejs
 echo "export NVM_DIR=''" >> /home/ec2-user/.bashrc
 echo "export NODEJS_HOME=/usr/local/lib/node/nodejs" >> /home/ec2-user/.bashrc
 echo "export PATH=\$NODEJS_HOME/bin:\$PATH" >> /home/ec2-user/.bashrc
-echo "installing NPM >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
-npm install -g npm@latest
+# echo "installing NPM >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
+# npm install -g npm@latest
 ### Reload environment
 . /home/ec2-user/.bashrc
 
@@ -44,14 +44,9 @@ echo "installing GIT >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> "
 sudo yum install git -y
 fi
 
-if [ $(program_is_installed mongodb) == 0 ]; then
-echo "installing MONGODB >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> "
-npm install mongodb
-fi
-
 if [ $(program_is_installed yarn) == 0 ]; then
 echo "installing YARN >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> "
-npm install --global yarn
+npx install --global yarn
 fi
 
 if [ $(program_is_installed docker) == 0 ]; then
@@ -59,6 +54,11 @@ echo "installing DOCKER >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
 sudo amazon-linux-extras install docker -y
 sudo systemctl start docker
 sudo docker run --name talkieapp-redis -p 6379:6379 --restart always --detach redis
+fi
+
+if [ $(program_is_installed mongodb) == 0 ]; then
+echo "installing MONGODB >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> "
+yarn add mongodb
 fi
 
 if [ $(program_is_installed pm2) == 0 ]; then

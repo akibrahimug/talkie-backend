@@ -7,7 +7,7 @@ resource "aws_iam_role" "ec2_iam_role" {
         Action = "sts:AssumeRole"
         Effect = "Allow"
         Principal = {
-          Service = ["ec2.amazonaws.com", "application-autoscaling.amazonaws.com"]
+          Service = ["ec2.amazonaws.com", "application-autoscaling.amazonaws.com", "codedeploy.amazonaws.com"]
         }
       }
     ]
