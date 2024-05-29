@@ -1,7 +1,6 @@
 resource "aws_autoscaling_group" "ec2_autoscaling_group" {
   launch_template {
-    id      = aws_launch_template.asg_launch_template.id
-    version = "$Latest"
+    id      = aws_launch_configuration.asg_launch_configuration.id
   }
   name                      = "${local.prefix}-ASG"
   vpc_zone_identifier       = [aws_subnet.public_subnet_a.id, aws_subnet.public_subnet_b.id]
