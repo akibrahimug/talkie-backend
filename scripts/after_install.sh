@@ -34,4 +34,5 @@ aws s3 sync s3://talkieappserver-env-files/develop .
 unzip env-file.zip
 cp .env.develop .env
 pm2 delete all
+sudo chown -R ec2-user:ec2-user /home/ec2-user/talkie-backend
 yarn
