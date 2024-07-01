@@ -76,5 +76,5 @@ sudo rm -rf .env.develop
 aws s3 sync s3://talkieappserver-env-files/develop .
 unzip env-file.zip
 sudo cp .env.develop .env
-sudo pm2 delete all
-sudo yarn install
+pm2 delete all
+yarn install
