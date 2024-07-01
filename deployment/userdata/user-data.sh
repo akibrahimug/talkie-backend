@@ -33,8 +33,10 @@ echo "Downloading Node >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
 # . /home/ec2-user/.bashrc
 # Check if NodeJs is installed. If not, install it
 
-  curl -fsSL https://rpm.nodesource.com/setup_lts.x | sudo bash -
-  sudo yum install -y nodejs
+  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+  source ~/.bashrc
+  nvm install --lts
+  node -e "console.log('Running Node.js ' + process.version)"
 fi
 
 if [ $(program_is_installed git) == 0 ]; then
@@ -42,8 +44,7 @@ echo "installing GIT >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> "
 sudo yum install git -y
 fi
 
-echo "installing NPM >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
-npm install -g npm@latest
+echo "installing YARN >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
 npm install -g yarn
 
 
