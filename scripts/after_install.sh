@@ -68,7 +68,8 @@
 
 
 #!/bin/bash
-
+# Source the .bashrc file to load the environment variables
+source /home/ec2-user/.bashrc
 cd /home/ec2-user/talkie-backend
 sudo rm -rf env-file.zip
 sudo rm -rf .env

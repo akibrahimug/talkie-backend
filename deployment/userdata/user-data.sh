@@ -19,24 +19,18 @@ sudo ./install auto
 
 if [ $(program_is_installed node) == 0 ]; then
 echo "Downloading Node >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
-### download NodeJS binary (x86 only)
-# wget -nv https://d3rnber7ry90et.cloudfront.net/linux-x86_64/node-v18.17.1.tar.gz
+## download NodeJS binary (x86 only)
+wget -nv https://d3rnber7ry90et.cloudfront.net/linux-x86_64/node-v18.17.1.tar.gz
 
-# sudo mkdir /usr/local/lib/node
-# tar -xf node-v18.17.1.tar.gz
-# sudo mv node-v18.17.1 /usr/local/lib/node/nodejs
-# ### Unload NVM, use the new node in the path, then install some items globally.
-# echo "export NVM_DIR=''" >> /home/ec2-user/.bashrc
-# echo "export NODEJS_HOME=/usr/local/lib/node/nodejs" >> /home/ec2-user/.bashrc
-# echo "export PATH=\$NODEJS_HOME/bin:\$PATH" >> /home/ec2-user/.bashrc
-# ### Reload environment
-# . /home/ec2-user/.bashrc
-# Check if NodeJs is installed. If not, install it
-
-  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
-  sudo source ~/.bashrc
-  nvm install --lts
-  node -e "console.log('Running Node.js ' + process.version)"
+sudo mkdir /usr/local/lib/node
+tar -xf node-v18.17.1.tar.gz
+sudo mv node-v18.17.1 /usr/local/lib/node/nodejs
+### Unload NVM, use the new node in the path, then install some items globally.
+echo "export NVM_DIR=''" >> /home/ec2-user/.bashrc
+echo "export NODEJS_HOME=/usr/local/lib/node/nodejs" >> /home/ec2-user/.bashrc
+echo "export PATH=\$NODEJS_HOME/bin:\$PATH" >> /home/ec2-user/.bashrc
+### Reload environment
+. /home/ec2-user/.bashrc
 fi
 
 if [ $(program_is_installed git) == 0 ]; then
