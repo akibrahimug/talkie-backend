@@ -42,10 +42,6 @@ echo "installing GIT >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> "
 sudo yum install git -y
 fi
 
-cd /home/ec2-user
-
-git clone -b develop https://github.com/akibrahimug/talkie-backend.git
-cd talkie-backend
 echo "installing NPM >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
 npm install -g npm@latest
 if [ $(program_is_installed yarn) == 0 ]; then
@@ -60,16 +56,18 @@ sudo systemctl start docker
 sudo docker run --name talkieapp-redis -p 6379:6379 --restart always --detach redis
 fi
 
-if [ $(program_is_installed mongodb) == 0 ]; then
-echo "installing MONGODB >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> "
-yarn add mongodb
-fi
-
 if [ $(program_is_installed pm2) == 0 ]; then
 echo "installing PM2 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
 yarn global add pm2
 fi
-yarn
+cd /home/ec2-user
+git clone -b develop https://github.com/akibrahimug/talkie-backend.git
+cd talkie-backend
+if [ $(program_is_installed mongodb) == 0 ]; then
+echo "installing MONGODB >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> "
+yarn add mongodb
+fi
+yarn install
 aws s3 sync s3://talkieappserver-env-files/develop .
 unzip env-file.zip
 cp .env.develop .env
