@@ -4,9 +4,9 @@ source /home/ec2-user/.bashrc
 cd /home/ec2-user/talkie-backend
 sudo rm -rf env-file.zip
 sudo rm -rf .env
-sudo rm -rf .env.staging
-aws s3 sync s3://talkieappserver-env-files/staging .
+sudo rm -rf .env.production
+aws s3 sync s3://talkieappserver-env-files/production .
 unzip env-file.zip
-sudo cp .env.staging .env
+sudo cp .env.production .env
 pm2 delete all
 yarn install

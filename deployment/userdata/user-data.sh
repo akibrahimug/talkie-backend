@@ -55,13 +55,13 @@ yarn global add pm2
 fi
 cd /home/ec2-user
 echo "Cloning repo >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
-git clone -b staging https://github.com/akibrahimug/talkie-backend.git
+git clone -b master https://github.com/akibrahimug/talkie-backend.git
 echo "Entering project folder >>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
 cd talkie-backend
 echo "Getting all envs"
-aws s3 sync s3://talkieappserver-env-files/staging .
+aws s3 sync s3://talkieappserver-env-files/production .
 unzip env-file.zip
-cp .env.staging .env
+cp .env.production .env
 echo "Instslling ......................................................................"
 yarn install --no-lockfile
 echo "Building application >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"

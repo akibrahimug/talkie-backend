@@ -52,10 +52,10 @@ variable "main_api_server_domain" {
   default     = "talkieappserver.xyz"
 }
 
-variable "stage_api_server_domain" {
-  description = "Staging API Server Domain"
+variable "prod_api_server_domain" {
+  description = "Production API Server Domain"
   type        = string
-  default     = "api.stage.talkieappserver.xyz"
+  default     = "api.prod.talkieappserver.xyz"
 }
 
 variable "ec2_iam_role_name" {

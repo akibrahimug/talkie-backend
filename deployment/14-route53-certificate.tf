@@ -1,5 +1,5 @@
 resource "aws_acm_certificate" "dev_cert" {
-  domain_name       = var.dev_api_server_domain
+  domain_name       = var.prod_api_server_domain
   validation_method = "DNS"
 
   tags = {
