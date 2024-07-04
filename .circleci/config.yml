@@ -363,8 +363,8 @@ workflows:
       #           - staging
       #           - master
       - notify-via-slack:
-          requires:
-            - push-to-aws-code-deploy
+          # requires:
+          #   - push-to-aws-code-deploy
           filters:
             branches:
               only:
