@@ -326,7 +326,7 @@ workflows:
                 - master
       - terraform-validate:
           requires:
-            - upload-zipped-project-to-s3
+            - unit-test
           filters:
             branches:
               only:
@@ -344,7 +344,7 @@ workflows:
                 - master
       - upload-zipped-project-to-s3:
           requires:
-            - unit-test
+            - terraform-plan-and-apply
           filters:
             branches:
               only:
