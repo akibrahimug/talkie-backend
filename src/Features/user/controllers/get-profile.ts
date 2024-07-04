@@ -40,14 +40,12 @@ export class Get {
     const followers: IFollowerData[] = await Get.prototype.followers(
       `${req.currentUser!.userId}`
     );
-    res
-      .status(HTTP_STATUS.OK)
-      .json({
-        message: 'Get users',
-        users: allUsers.users,
-        totalUsers: allUsers.totalUsers,
-        followers,
-      });
+    res.status(HTTP_STATUS.OK).json({
+      message: 'Get users',
+      users: allUsers.users,
+      totalUsers: allUsers.totalUsers,
+      followers,
+    });
   }
 
   public async profile(req: Request, res: Response): Promise<void> {
@@ -93,13 +91,11 @@ export class Get {
           createdAt: -1,
         });
 
-    res
-      .status(HTTP_STATUS.OK)
-      .json({
-        message: 'Get user profile and posts',
-        user: existingUser,
-        posts: userPosts,
-      });
+    res.status(HTTP_STATUS.OK).json({
+      message: 'Get user profile and posts',
+      user: existingUser,
+      posts: userPosts,
+    });
   }
 
   public async randomUserSuggestions(

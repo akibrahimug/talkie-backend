@@ -9,12 +9,12 @@ const addChatSchema: ObjectSchema = Joi.object().keys({
   body: Joi.string().optional().allow(null, ''),
   gifUrl: Joi.string().optional().allow(null, ''),
   selectedImage: Joi.string().optional().allow(null, ''),
-  isRead: Joi.boolean().optional()
+  isRead: Joi.boolean().optional(),
 });
 
 const markChatSchema: ObjectSchema = Joi.object().keys({
   senderId: Joi.string().required(),
-  receiverId: Joi.string().required()
+  receiverId: Joi.string().required(),
 });
 
 export { addChatSchema, markChatSchema };

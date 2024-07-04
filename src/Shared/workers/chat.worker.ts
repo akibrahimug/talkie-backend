@@ -29,7 +29,10 @@ class ChatWorker {
     }
   }
 
-  async markMessagesAsReadInDB(jobQueue: Job, done: DoneCallback): Promise<void> {
+  async markMessagesAsReadInDB(
+    jobQueue: Job,
+    done: DoneCallback
+  ): Promise<void> {
     try {
       const { senderId, receiverId } = jobQueue.data;
       await chatService.markMessagesAsRead(senderId, receiverId);
@@ -41,10 +44,18 @@ class ChatWorker {
     }
   }
 
-  async updateMessageReaction(jobQueue: Job, done: DoneCallback): Promise<void> {
+  async updateMessageReaction(
+    jobQueue: Job,
+    done: DoneCallback
+  ): Promise<void> {
     try {
       const { messageId, senderName, reaction, type } = jobQueue.data;
-      await chatService.updateMessageReaction(messageId, senderName, reaction, type);
+      await chatService.updateMessageReaction(
+        messageId,
+        senderName,
+        reaction,
+        type
+      );
       jobQueue.progress(100);
       done(null, jobQueue.data);
     } catch (error) {
