@@ -30,7 +30,7 @@ aliases:
   - &install-dependencies
     run:
       name: Install dependencies
-      command: yarn Install
+      command: yarn install
   - &save-cache
     save_cache:
       paths:
