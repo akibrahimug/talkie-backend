@@ -335,36 +335,36 @@ workflows:
                 - develop
                 - staging
                 - master
-      # - terraform-plan-and-apply:
-      #     requires:
-      #       - terraform-validate
-      #     filters:
-      #       branches:
-      #         only:
-      #           - develop
-      #           - staging
-      #           - master
-      # - upload-zipped-project-to-s3:
-      #     requires:
-      #       - terraform-plan-and-apply
-      #     filters:
-      #       branches:
-      #         only:
-      #           - develop
-      #           - staging
-      #           - master
-      # - push-to-aws-code-deploy:
-      #     requires:
-      #       - upload-zipped-project-to-s3
-      #     filters:
-      #       branches:
-      #         only:
-      #           - develop
-      #           - staging
-      #           - master
+      - terraform-plan-and-apply:
+          requires:
+            - terraform-validate
+          filters:
+            branches:
+              only:
+                - develop
+                - staging
+                - master
+      - upload-zipped-project-to-s3:
+          requires:
+            - terraform-plan-and-apply
+          filters:
+            branches:
+              only:
+                - develop
+                - staging
+                - master
+      - push-to-aws-code-deploy:
+          requires:
+            - upload-zipped-project-to-s3
+          filters:
+            branches:
+              only:
+                - develop
+                - staging
+                - master
       - notify-via-slack:
-          # requires:
-          #   - push-to-aws-code-deploy
+          requires:
+            - push-to-aws-code-deploy
           filters:
             branches:
               only:
