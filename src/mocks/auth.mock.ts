@@ -66,6 +66,7 @@ export const authMock = {
   email: 'manny@me.com',
   avatarColor: '#9c27b0',
   createdAt: '2022-08-31T07:42:24.451Z',
-  save: () => {},
-  comparePassword: () => false,
+  save: async () => Promise.resolve(), // Improved save method
+  comparePassword: (inputPassword: string) =>
+    inputPassword === 'correct_password', // Improved comparePassword method
 } as unknown as IAuthDocument;
