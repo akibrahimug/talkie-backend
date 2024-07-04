@@ -6,16 +6,16 @@ version: 2.1
 executors:
   app-executor:
     docker:
-      - image: cimg/node:current
+      - image: cimg/node:20.12.2
       - image: cimg/redis:6.2.6
-      - image: 'cibuilds/base:latest'
+      - image: "cibuilds/base:latest"
     working_directory: ~/repo
   terraform-executor:
     docker:
       - image: hashicorp/terraform:latest
   slack-executor:
     docker:
-      - image: 'cibuilds/base:latest'
+      - image: "cibuilds/base:latest"
     resource_class: small
 
 aliases:
@@ -45,64 +45,64 @@ aliases:
         echo "Zip run successfully"
   - &notify-on-fail
     slack/notify:
-        event: fail
-        channel: 'backend-builds'
-        template: ''
-        custom: |
-          {
-              "blocks": [
-                {
-                  "type": "header",
-                  "text": {
-                    "type": "plain_text",
-                    "text": "Job Failed. 🔴",
-                    "emoji": true
-                  }
-                },
-                {
-                  "type": "section",
-                  "fields": [
-                    {
-                      "type": "mrkdwn",
-                      "text": "*Project*:\n$CIRCLE_PROJECT_REPONAME"
-                    },
-                    {
-                      "type": "mrkdwn",
-                      "text": "*Job*: ${CIRCLE_JOB}"
-                    },
-                    {
-                      "type": "mrkdwn",
-                      "text": "*Branch*:\n$CIRCLE_BRANCH"
-                    },
-                    {
-                      "type": "mrkdwn",
-                      "text": "*When*:\n$(date +'%m/%d/%Y %T')"
-                    },
-                    {
-                      "type": "mrkdwn",
-                      "text": "*Build*:\n$CIRCLE_BUILD_NUM"
-                    },
-                    {
-                      "type": "mrkdwn",
-                      "text": "*Author*:\n$CIRCLE_PROJECT_USERNAME"
-                    }
-                  ]
-                },
-                {
-                  "type": "actions",
-                  "elements": [
-                    {
-                      "type": "button",
-                      "text": {
-                        "type": "plain_text",
-                        "text": "View Job"
-                      },
-                      "url": "${CIRCLE_BUILD_URL}"
-                    }
-                  ]
+      event: fail
+      channel: "backend-builds"
+      template: ""
+      custom: |
+        {
+            "blocks": [
+              {
+                "type": "header",
+                "text": {
+                  "type": "plain_text",
+                  "text": "Job Failed. 🔴",
+                  "emoji": true
                 }
-              ]
-          }
+              },
+              {
+                "type": "section",
+                "fields": [
+                  {
+                    "type": "mrkdwn",
+                    "text": "*Project*:\n$CIRCLE_PROJECT_REPONAME"
+                  },
+                  {
+                    "type": "mrkdwn",
+                    "text": "*Job*: ${CIRCLE_JOB}"
+                  },
+                  {
+                    "type": "mrkdwn",
+                    "text": "*Branch*:\n$CIRCLE_BRANCH"
+                  },
+                  {
+                    "type": "mrkdwn",
+                    "text": "*When*:\n$(date +'%m/%d/%Y %T')"
+                  },
+                  {
+                    "type": "mrkdwn",
+                    "text": "*Build*:\n$CIRCLE_BUILD_NUM"
+                  },
+                  {
+                    "type": "mrkdwn",
+                    "text": "*Author*:\n$CIRCLE_PROJECT_USERNAME"
+                  }
+                ]
+              },
+              {
+                "type": "actions",
+                "elements": [
+                  {
+                    "type": "button",
+                    "text": {
+                      "type": "plain_text",
+                      "text": "View Job"
+                    },
+                    "url": "${CIRCLE_BUILD_URL}"
+                  }
+                ]
+              }
+            ]
+        }
 
 jobs:
   build:
@@ -170,8 +170,8 @@ jobs:
       - checkout
       - *show-current-branch-name
       - run:
-         name: Terraform validate & format
-         command: |
+          name: Terraform validate & format
+          command: |
             cd deployment/
             terraform init -backend=false
             terraform validate
@@ -183,15 +183,15 @@ jobs:
       - checkout
       - *show-current-branch-name
       - run:
-         name: Terraform plan
-         command: |
+          name: Terraform plan
+          command: |
             cd deployment/
             terraform init
             terraform workspace select ${CIRCLE_BRANCH} || terraform workspace new ${CIRCLE_BRANCH}
             terraform plan
       - run:
-         name: Terraform apply
-         command: |
+          name: Terraform apply
+          command: |
             cd deployment/
             terraform workspace select ${CIRCLE_BRANCH}
             terraform apply -auto-approve
@@ -285,8 +285,8 @@ jobs:
       - checkout
       - *show-current-branch-name
       - run:
-         name: Terraform destroy
-         command: |
+          name: Terraform destroy
+          command: |
             cd deployment/
             terraform init
             terraform workspace select ${CIRCLE_BRANCH} || terraform workspace new ${CIRCLE_BRANCH}
