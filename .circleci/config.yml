@@ -113,7 +113,6 @@ jobs:
       - *restore-cache
       - *install-dependencies
       - *save-cache
-      - *notify-on-fail
   linting:
     executor: app-executor
     steps:
@@ -154,18 +153,6 @@ jobs:
             yarn test
       - codecov/upload
       - *notify-on-fail
-  upload-zipped-project-to-s3:
-    executor: aws-cli/default
-    steps:
-      - checkout
-      - aws-cli/setup:
-          profile_name: default
-      - *zip-project
-      - run:
-          name: Upload project to S3
-          command: |
-            aws --region us-east-1 s3 cp talkieapp.zip s3://talkieapp-server-${CIRCLE_BRANCH}-app
-      - *notify-on-fail
   terraform-validate:
     executor: terraform-executor
     steps:
@@ -197,6 +184,18 @@ jobs:
             cd deployment/
             terraform workspace select ${CIRCLE_BRANCH}
             terraform apply -auto-approve
+      - *notify-on-fail
+  upload-zipped-project-to-s3:
+    executor: aws-cli/default
+    steps:
+      - checkout
+      - aws-cli/setup:
+          profile_name: default
+      - *zip-project
+      - run:
+          name: Upload project to S3
+          command: |
+            aws --region us-east-1 s3 cp talkieapp.zip s3://talkieapp-server-${CIRCLE_BRANCH}-app
       - *notify-on-fail
   push-to-aws-code-deploy:
     executor: aws-cli/default
@@ -325,15 +324,6 @@ workflows:
                 - develop
                 - staging
                 - master
-      - upload-zipped-project-to-s3:
-          requires:
-            - unit-test
-          filters:
-            branches:
-              only:
-                - develop
-                - staging
-                - master
       - terraform-validate:
           requires:
             - upload-zipped-project-to-s3
@@ -346,6 +336,15 @@ workflows:
       - terraform-plan-and-apply:
           requires:
             - terraform-validate
+          filters:
+            branches:
+              only:
+                - develop
+                - staging
+                - master
+      - upload-zipped-project-to-s3:
+          requires:
+            - unit-test
           filters:
             branches:
               only:
