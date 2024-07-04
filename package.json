@@ -7,7 +7,7 @@
     "start": "NODE_ENV=production pm2 start ./build/src/app.js -i --attach --watch | ./node_modules/.bin/bunyan",
     "stop": "pm2 stop all",
     "delete": "pm2 delete all",
-    "test": "jest --coverage=true -w=1 --forceExit --detectOpenHandles --watchAll=true",
+    "test": "jest --coverage=true -w=1 --forceExit --detectOpenHandles --watchAll=false",
     "dev": "nodemon --exec ts-node -r tsconfig-paths/register src/app.ts | ./node_modules/.bin/bunyan",
     "lint:check": "eslint 'src/**/*.ts'",
     "lint:fix": "eslint --fix 'src/**/*.ts'",
