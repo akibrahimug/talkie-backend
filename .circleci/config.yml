@@ -153,7 +153,7 @@ jobs:
       - codecov/upload
       - *notify-on-fail
   upload-zipped-project-to-s3:
-    executor: aws-cli:default
+    executor: aws-cli/default
     steps:
       - checkout
       - aws-cli/setup:
@@ -197,7 +197,7 @@ jobs:
             terraform apply -auto-approve
       - *notify-on-fail
   push-to-aws-code-deploy:
-    executor: aws-cli:default
+    executor: aws-cli/default
     steps:
       - checkout
       - aws-cli/setup:
