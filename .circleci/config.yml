@@ -353,7 +353,7 @@ workflows:
                 - master
       - push-to-aws-code-deploy:
           requires:
-            - terraform-plan-and-apply
+            - upload-zipped-project-to-s3
           filters:
             branches:
               only:
