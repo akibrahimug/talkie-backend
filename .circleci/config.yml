@@ -129,10 +129,12 @@ jobs:
     steps:
       - checkout
       - *show-current-branch-name
-      - *restore-cache
+      # - *restore-cache
       - run:
           name: Run prettier check
-          command: yarn prettier:check
+          command: |
+            yarn install
+            yarn prettier:check
       - *notify-on-fail
   unit-test:
     executor: app-executor
