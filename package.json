@@ -11,7 +11,7 @@
     "dev": "nodemon --exec ts-node -r tsconfig-paths/register src/app.ts | ./node_modules/.bin/bunyan",
     "lint:check": "eslint 'src/**/*.ts'",
     "lint:fix": "eslint --fix 'src/**/*.ts'",
-    "prettier:check": "prettier --check 'src/**/*.{ts,json,md}' --loglevel debug",
+    "prettier:check": "prettier --check 'src/**/*.{ts,json,md}'",
     "prettier:fix": "prettier --write 'src/**/*.{ts,json,md}'",
     "build": "ttsc -p .",
     "seed:dev": "npx ts-node src/seeds.ts",
