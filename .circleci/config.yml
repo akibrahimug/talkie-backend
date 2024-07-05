@@ -152,10 +152,6 @@ jobs:
             sleep 3
             yarn test
       - run:
-          name: Print CircleCI Configuration
-          command: |
-            circleci config process .circleci/config.yml
-      - run:
           name: Print Environment Variables
           command: |
             echo "Printing all environment variables:"
