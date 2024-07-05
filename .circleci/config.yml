@@ -151,11 +151,33 @@ jobs:
           command: |
             sleep 3
             yarn test
+      - run:
+          name: Print CircleCI Configuration
+          command: |
+            circleci config process .circleci/config.yml
+      - run:
+          name: Print Environment Variables
+          command: |
+            echo "Printing all environment variables:"
+            env
+      - run:
+          name: Extract and Print GitHub Repository Name
+          command: |
+            REPO_NAME=$(basename -s .git `echo $CIRCLE_REPOSITORY_URL`)
+            echo "Extracted GitHub Repo Name: $REPO_NAME"
+            echo "Full Repository URL: $CIRCLE_REPOSITORY_URL"
+      - run:
+          name: Debugging Codecov Info
+          command: |
+            echo "CircleCI Repo Name: $CIRCLE_PROJECT_REPONAME"
+            echo "CircleCI Branch: $CIRCLE_BRANCH"
+            echo "Codecov Token: $CODECOV_TOKEN"
+            echo "GitHub Repo: $REPO_NAME"
       - codecov/upload:
           file: "coverage/lcov.info"
           flags: "unittests"
           token: CODECOV_TOKEN
-          cli_args: ${GITHUB_PROJECT_REPO}
+          cli_args: "$REPO_NAME"
       - *notify-on-fail
   terraform-validate:
     executor: terraform-executor
