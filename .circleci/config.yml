@@ -155,14 +155,8 @@ jobs:
           name: Upload coverage to Codecov
           command: |
             curl -Os https://cli.codecov.io/latest/linux/codecov
-            curl https://keybase.io/codecovsecurity/pgp_keys.asc | gpg --no-default-keyring --keyring trustedkeys.gpg --import # One-time step
-            curl -Os https://cli.codecov.io/latest/linux/codecov
-            curl -Os https://cli.codecov.io/latest/linux/codecov.SHA256SUM
-            curl -Os https://cli.codecov.io/latest/linux/codecov.SHA256SUM.sig
-            gpgv codecov.SHA256SUM.sig codecov.SHA256SUM
-            shasum -a 256 -c codecov.SHA256SUM
-            chmod +x codecov
-            codecovcli upload-process -t $CODECOV_TOKEN -r $GITHUB_PROJECT_REPO
+            sudo chmod +x codecov
+            ./codecov upload-process --fail-on-error -t $CODECOV_TOKEN -r $GITHUB_PROJECT_REPO
       - *notify-on-fail
   terraform-validate:
     executor: terraform-executor
