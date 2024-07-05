@@ -151,27 +151,7 @@ jobs:
           command: |
             sleep 3
             yarn test
-      - run:
-          name: Print Environment Variables
-          command: |
-            echo "Printing all environment variables:"
-            env
-      - run:
-          name: Extract and Print GitHub Repository Name
-          command: |
-            echo "Full Repository URL: $CIRCLE_REPOSITORY_URL"
-      - run:
-          name: Debugging Codecov Info
-          command: |
-            echo "CircleCI Repo Name: $CIRCLE_PROJECT_REPONAME"
-            echo "CircleCI Branch: $CIRCLE_BRANCH"
-            echo "Codecov Token: $CODECOV_TOKEN"
-            echo "GitHub Repo: $REPO_NAME"
-      - codecov/upload:
-          file: "coverage/lcov.info"
-          flags: "unittests"
-          token: CODECOV_TOKEN
-          cli_args: "$REPO_NAME"
+      - codecov/upload
       - *notify-on-fail
   terraform-validate:
     executor: terraform-executor
