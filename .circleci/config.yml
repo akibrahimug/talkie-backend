@@ -159,8 +159,6 @@ jobs:
       - run:
           name: Extract and Print GitHub Repository Name
           command: |
-            REPO_NAME=$(basename -s .git `echo $CIRCLE_REPOSITORY_URL`)
-            echo "Extracted GitHub Repo Name: $REPO_NAME"
             echo "Full Repository URL: $CIRCLE_REPOSITORY_URL"
       - run:
           name: Debugging Codecov Info
