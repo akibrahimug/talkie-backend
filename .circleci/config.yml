@@ -151,12 +151,8 @@ jobs:
           command: |
             sleep 3
             yarn test
-      - run:
-          name: Upload coverage to Codecov
-          command: |
-            curl -Os https://cli.codecov.io/latest/linux/codecov
-            sudo chmod +x codecov
-            ./codecov upload-process --fail-on-error -t $CODECOV_TOKEN -r $GITHUB_PROJECT_REPO
+            echo 'export CODECOV_PARAMS="-r $GITHUB_PROJECT_REPO"' >> $BASH_ENV
+      - codecov/upload
       - *notify-on-fail
   terraform-validate:
     executor: terraform-executor
