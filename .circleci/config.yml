@@ -151,18 +151,13 @@ jobs:
           command: |
             sleep 3
             yarn test
-      - run:
-          name: Set Codecov Params
-          command: |
-            echo 'export CODECOV_PARAMS="-r $GITHUB_PROJECT_REPO"' >> $BASH_ENV
-      - run:
-          name: Debugging Codecov Info
-          command: |
-            echo "CircleCI Repo Name: $CIRCLE_PROJECT_REPONAME"
-            echo "CircleCI Branch: $CIRCLE_BRANCH"
-            echo "Codecov Token: $CODECOV_TOKEN"
-            echo "GitHub Repo: $GITHUB_PROJECT_REPO"
-      - codecov/upload
+      - codecov/upload:
+          file: "coverage/lcov.info"
+          flags: "unittests"
+          name: "Unit Test Coverage"
+          token: $CODECOV_TOKEN
+          with:
+            -r: $GITHUB_PROJECT_REPO"
       - *notify-on-fail
   terraform-validate:
     executor: terraform-executor
