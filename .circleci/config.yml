@@ -155,7 +155,7 @@ jobs:
           file: "coverage/lcov.info"
           flags: "unittests"
           token: CODECOV_TOKEN
-          cli_args: -r ${GITHUB_PROJECT_REPO}
+          cli_args: ${GITHUB_PROJECT_REPO}
       - *notify-on-fail
   terraform-validate:
     executor: terraform-executor
