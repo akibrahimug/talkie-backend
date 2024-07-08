@@ -4,7 +4,6 @@
 # Talkie App Backend
 
 |     |     |     |     |
-| :-: | :-: | :-: | :-: |
 
 [![CircleCI](https://dl.circleci.com/status-badge/img/circleci/HcDbcKqVcgcnUECYxtWAXd/F7vbMX1M7tTUwKihCi4GYR/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/circleci/HcDbcKqVcgcnUECYxtWAXd/F7vbMX1M7tTUwKihCi4GYR/tree/main)
 [![codecov](https://codecov.io/gh/akibrahimug/talkie-backend/graph/badge.svg?token=B1TIW42GEF)](https://codecov.io/gh/akibrahimug/talkie-backend)
