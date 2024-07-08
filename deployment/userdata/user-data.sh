@@ -38,7 +38,7 @@ echo "installing GIT >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> "
 sudo yum install git -y
 fi
 
-echo "installing YARN >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
+echo "installing YARN >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
 npm install -g yarn
 
 
