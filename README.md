@@ -1,9 +1,14 @@
 <!-- [![CircleCI](https://dl.circleci.com/status-badge/img/gh/kasomaibrahim/talkie-backend/tree/develop.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/kasomaibrahim/talkie-backend/tree/develop)
 [![codecov](https://codecov.io/gh/kasomaibrahim/talkie-backend/branch/develop/graph/badge.svg?token=VR3XBTQMCV)](https://codecov.io/gh/kasomaibrahim/talkie-backend) -->
 
-# talkie App Backend
+# Talkie App Backend
 
-|                                                                                                                   |                                                                                                                                                |                                                                                                                           |                                                                                                                            |
+|     |     |     |     |
+| :-: | :-: | :-: | :-: |
+
+[![CircleCI](https://dl.circleci.com/status-badge/img/circleci/HcDbcKqVcgcnUECYxtWAXd/F7vbMX1M7tTUwKihCi4GYR/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/circleci/HcDbcKqVcgcnUECYxtWAXd/F7vbMX1M7tTUwKihCi4GYR/tree/main)
+[![codecov](https://codecov.io/gh/akibrahimug/talkie-backend/graph/badge.svg?token=B1TIW42GEF)](https://codecov.io/gh/akibrahimug/talkie-backend)
+| | | | |
 | :---------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------: |
 | ![First Image](https://res.cloudinary.com/dyamr9ym3/image/upload/v1662482458/github_readme_images/aws_bxdmec.png) | ![Second Image](https://res.cloudinary.com/dyamr9ym3/image/upload/v1662482319/github_readme_images/Terraform_PrimaryLogo_Color_RGB_gcbknj.png) | ![Third Image](https://res.cloudinary.com/dyamr9ym3/image/upload/v1662482279/github_readme_images/nodejs-logo_hqxxed.svg) | ![Fourth Image](https://res.cloudinary.com/dyamr9ym3/image/upload/v1662482298/github_readme_images/ts-logo-512_jt9rmi.png) |
 
