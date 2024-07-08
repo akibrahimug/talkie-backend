@@ -1,8 +1,8 @@
 <!-- [![CircleCI](https://dl.circleci.com/status-badge/img/gh/kasomaibrahim/talkie-backend/tree/develop.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/kasomaibrahim/talkie-backend/tree/develop)
 [![codecov](https://codecov.io/gh/kasomaibrahim/talkie-backend/branch/develop/graph/badge.svg?token=VR3XBTQMCV)](https://codecov.io/gh/kasomaibrahim/talkie-backend) -->
 
-# Talkie App Backend
-[![CircleCI](https://dl.circleci.com/status-badge/img/circleci/HcDbcKqVcgcnUECYxtWAXd/F7vbMX1M7tTUwKihCi4GYR/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/circleci/HcDbcKqVcgcnUECYxtWAXd/F7vbMX1M7tTUwKihCi4GYR/tree/main)
+# Talkie App Backend 
+[![CircleCI](https://dl.circleci.com/status-badge/img/circleci/HcDbcKqVcgcnUECYxtWAXd/F7vbMX1M7tTUwKihCi4GYR/tree/main.svg?style=svg(https://dl.circleci.com/status-badge/redirect/circleci/HcDbcKqVcgcnUECYxtWAXd/F7vbMX1M7tTUwKihCi4GYR/tree/main)
 [![codecov](https://codecov.io/gh/akibrahimug/talkie-backend/graph/badge.svg?token=B1TIW42GEF)](https://codecov.io/gh/akibrahimug/talkie-backend)
 | | | | |
 | :---------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------: |
