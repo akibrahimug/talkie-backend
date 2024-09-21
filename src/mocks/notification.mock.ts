@@ -3,10 +3,14 @@ import { INotificationDocument } from '@notification/interfaces/notification.int
 import { Response } from 'express';
 import { IJWT } from './auth.mock';
 
-export const notificationMockRequest = (sessionData: IJWT, currentUser?: AuthPayload | null, params?: IParams) => ({
+export const notificationMockRequest = (
+  sessionData: IJWT,
+  currentUser?: AuthPayload | null,
+  params?: IParams
+) => ({
   session: sessionData,
   params,
-  currentUser
+  currentUser,
 });
 
 export const notificationMockResponse = (): Response => {
@@ -35,5 +39,5 @@ export const notificationData = {
   imgVersion: '',
   gifUrl: '',
   read: false,
-  createdAt: new Date()
+  createdAt: new Date(),
 } as unknown as INotificationDocument;

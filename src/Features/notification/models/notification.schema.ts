@@ -1,4 +1,7 @@
-import { INotificationDocument, INotification } from '@notification/interfaces/notification.interface';
+import {
+  INotificationDocument,
+  INotification,
+} from '@notification/interfaces/notification.interface';
 import { notificationService } from '@service/db/notification.service';
 import mongoose, { model, Model, Schema } from 'mongoose';
 
@@ -16,10 +19,12 @@ const notificationSchema: Schema = new Schema({
   imgId: { type: String, default: '' },
   imgVersion: { type: String, default: '' },
   gifUrl: { type: String, default: '' },
-  createdAt: { type: Date, default: Date.now() }
+  createdAt: { type: Date, default: Date.now() },
 });
 
-notificationSchema.methods.insertNotification = async function (body: INotification) {
+notificationSchema.methods.insertNotification = async function (
+  body: INotification
+) {
   const {
     userTo,
     userFrom,
@@ -33,7 +38,7 @@ notificationSchema.methods.insertNotification = async function (body: INotificat
     post,
     imgId,
     imgVersion,
-    gifUrl
+    gifUrl,
   } = body;
 
   await NotificationModel.create({
@@ -49,15 +54,21 @@ notificationSchema.methods.insertNotification = async function (body: INotificat
     post,
     imgId,
     imgVersion,
-    gifUrl
+    gifUrl,
   });
   try {
-    const notifications: INotificationDocument[] = await notificationService.getNotifications(userTo);
+    const notifications: INotificationDocument[] =
+      await notificationService.getNotifications(userTo);
     return notifications;
   } catch (error) {
     return error;
   }
 };
 
-const NotificationModel: Model<INotificationDocument> = model<INotificationDocument>('Notification', notificationSchema, 'Notification');
+const NotificationModel: Model<INotificationDocument> =
+  model<INotificationDocument>(
+    'Notification',
+    notificationSchema,
+    'Notification'
+  );
 export { NotificationModel };

@@ -8,11 +8,16 @@ import { existingUser, existingUserTwo } from '@root/mocks/user.mock';
 import { ObjectId } from 'mongodb';
 import { IChatList } from '@chat/interfaces/chat.interface';
 
-export const chatMockRequest = (sessionData: IJWT, body: IMessage, currentUser?: AuthPayload | null, params?: IChatParams) => ({
+export const chatMockRequest = (
+  sessionData: IJWT,
+  body: IMessage,
+  currentUser?: AuthPayload | null,
+  params?: IChatParams
+) => ({
   session: sessionData,
   body,
   params,
-  currentUser
+  currentUser,
 });
 
 export const chatMockResponse = (): Response => {
@@ -60,7 +65,7 @@ export const chatMessage = {
   receiverUsername: 'Danny',
   receiverAvatarColor: '#9c27b0',
   receiverProfilePicture: 'http://place-hold.it/500x500',
-  selectedImage: ''
+  selectedImage: '',
 };
 
 export const messageDataMock: IMessageData = {
@@ -81,12 +86,12 @@ export const messageDataMock: IMessageData = {
   reaction: [],
   createdAt: '2022-06-29T12:51:39.483Z',
   deleteForMe: false,
-  deleteForEveryone: false
+  deleteForEveryone: false,
 };
 
 export const chatList: IChatList[] = [
   {
     receiverId: `${existingUserTwo._id}`,
-    conversationId: chatMessage.conversationId
-  }
+    conversationId: chatMessage.conversationId,
+  },
 ];

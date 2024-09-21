@@ -18,8 +18,12 @@ const messageSchema: Schema = new Schema({
   deleteForEveryone: { type: Boolean, default: false },
   selectedImage: { type: String, default: '' },
   reaction: Array,
-  createdAt: { type: Date, default: Date.now }
+  createdAt: { type: Date, default: Date.now },
 });
 
-const MessageModel: Model<IMessageDocument> = model<IMessageDocument>('Message', messageSchema, 'Message');
+const MessageModel: Model<IMessageDocument> = model<IMessageDocument>(
+  'Message',
+  messageSchema,
+  'Message'
+);
 export { MessageModel };
