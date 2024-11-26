@@ -65,7 +65,7 @@ export class TalkyServer {
         maxAge: 24 * 60 * 60 * 1000, // 24 hours
         // we change secure only for development
         secure: config.NODE_ENV !== 'development',
-        sameSite: 'none',
+        // sameSite: 'none',
       })
     );
     app.use(helmet());

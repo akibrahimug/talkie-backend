@@ -1,5 +1,5 @@
-@baseUrl = https://api.dev.talkieappserver.xyz
-# @baseUrl = http://localhost:5000
+# @baseUrl = https://api.dev.talkieappserver.xyz
+@baseUrl = http://localhost:5000
 @urlPath = api/v1
 
 ###
@@ -39,8 +39,8 @@ Accept: application/json
 withCredentials: true
 
 {
-  "username": "drilll",
-  "password": "qwerty"
+  "username": "test",
+  "password": "test"
 }
 
 
