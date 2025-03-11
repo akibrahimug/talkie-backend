@@ -10,6 +10,7 @@ import {
   Response,
   Request,
   NextFunction,
+  RequestHandler,
 } from 'express';
 import http from 'http';
 import cors from 'cors';
@@ -66,10 +67,10 @@ export class TalkyServer {
         // we change secure only for development
         secure: config.NODE_ENV !== 'development',
         // sameSite: 'none',
-      })
+      }) as unknown as RequestHandler
     );
-    app.use(helmet());
-    app.use(hpp());
+    app.use(helmet() as unknown as RequestHandler);
+    app.use(hpp() as unknown as RequestHandler);
     app.use(
       cors({
         origin: config.CLIENT_URL,
@@ -78,7 +79,7 @@ export class TalkyServer {
         // For older browsers but just to be safe
         optionsSuccessStatus: 200,
         methods: ['GET,HEAD,PUT,PATCH,POST,DELETE'],
-      })
+      }) as unknown as RequestHandler
     );
   }
 
@@ -87,7 +88,7 @@ export class TalkyServer {
     app.use(
       apiStates.getMiddleware({
         uriPath: '/api-monitoring',
-      })
+      }) as unknown as RequestHandler
     );
   }
 
@@ -134,17 +135,17 @@ export class TalkyServer {
   }
 
   private standardMiddleware(app: Application): void {
-    app.use(compression());
+    app.use(compression() as unknown as RequestHandler);
     app.use(
       json({
         limit: '50mb',
-      })
+      }) as unknown as RequestHandler
     );
     app.use(
       urlencoded({
         extended: true,
         limit: '50mb',
-      })
+      }) as unknown as RequestHandler
     );
   }
 

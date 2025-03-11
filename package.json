@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
+  "licenseS": "MIT",
   "scripts": {
     "start": "NODE_ENV=production pm2 start ./build/src/app.js -i --attach --watch | ./node_modules/.bin/bunyan",
     "stop": "pm2 stop all",
