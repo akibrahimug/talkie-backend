@@ -40,6 +40,13 @@ class ReactionsRoutes {
       authmiddleware.checkAuthentication,
       Remove.prototype.reaction
     );
+
+    this.router.delete(
+      '/post/reaction/:postId/:previousReaction',
+      authmiddleware.checkAuthentication,
+      Remove.prototype.reactionWithBody
+    );
+
     return this.router;
   }
 }
