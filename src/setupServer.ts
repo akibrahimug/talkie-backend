@@ -1,8 +1,4 @@
-import {
-  CustomError,
-  IError,
-  IErrorResponse,
-} from '@global/helpers/error-handler';
+import { CustomError, IErrorResponse } from '@global/helpers/error-handler';
 import {
   Application,
   json,
